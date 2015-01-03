@@ -30,7 +30,7 @@ Rectangle {
         x: 52
         width: 200
         height: 40
-        opacity: 0.55
+        opacity: 0.75
         font.pixelSize: 16
         font.family: "Tahoma"
         anchors.top: title.bottom
@@ -46,7 +46,7 @@ Rectangle {
         height: 40
         font.family: "Tahoma"
         echoMode: 2
-        opacity: 0.55
+        opacity: 0.75
         font.pixelSize: 16
         anchors.top: emailField.bottom
         anchors.topMargin: 30
