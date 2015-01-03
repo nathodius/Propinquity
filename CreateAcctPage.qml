@@ -44,25 +44,27 @@ Rectangle {
 
 
             RowLayout {
-                id: emailField
+                id: emailRow
                 width: 250
                 height: 50
                 anchors.top: title.bottom
                 anchors.topMargin: 50
                 anchors.horizontalCenter: parent.horizontalCenter
-                spacing: 50
+                spacing: 95
 
 
                 Label {
-                    id: label1
+                    id: emailLabel
                     y: 292
-                    text: qsTr("Label")
+                    width: 70
+                    text: qsTr("EMAIL")
+                    horizontalAlignment: Text.AlignLeft
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                 }
 
                 TextField {
-                    id: textField1
+                    id: emailField
                     x: 709
                     y: 289
                     placeholderText: qsTr("Text Field")
@@ -71,23 +73,23 @@ Rectangle {
             }
 
           RowLayout {
-              id: passwordField
+              id: passwordRow
               x: -6
               width: 250
               height: 50
-              anchors.top: emailField.bottom
+              anchors.top: emailRow.bottom
               anchors.topMargin: 30
               anchors.horizontalCenterOffset: 0
               Label {
-                  id: label2
+                  id: passwordLabel
                   y: 292
-                  text: qsTr("Label")
+                  text: qsTr("PASSWORD")
                   anchors.left: parent.left
                   anchors.leftMargin: 10
               }
 
               TextField {
-                  id: textField2
+                  id: passwordField
                   x: 709
                   y: 289
                   placeholderText: qsTr("Text Field")
@@ -97,23 +99,23 @@ Rectangle {
           }
 
           RowLayout {
-              id: rowLayout3
+              id: password_reEnterRow
               x: -8
               width: 250
               height: 50
-              anchors.top: passwordField.bottom
+              anchors.top: passwordRow.bottom
               anchors.topMargin: 30
               anchors.horizontalCenterOffset: 0
               Label {
-                  id: password_reEnterField
+                  id: password_reEnterLabel
                   y: 292
-                  text: qsTr("Label")
+                  text: qsTr("PASSWORD")
                   anchors.left: parent.left
                   anchors.leftMargin: 10
               }
 
               TextField {
-                  id: textField3
+                  id: password_reEnterField
                   x: 709
                   y: 289
                   placeholderText: qsTr("Text Field")
@@ -123,25 +125,26 @@ Rectangle {
           }
 
           RowLayout {
-              id: genderField
+              id: genderRow
               x: -13
               width: 250
               height: 50
-              anchors.top: rowLayout3.bottom
+              anchors.top: password_reEnterRow.bottom
               anchors.topMargin: 30
               Label {
-                  id: label4
+                  id: genderLabel
                   y: 292
-                  text: qsTr("Label")
+                  width: 70
+                  text: qsTr("GENDER")
                   anchors.left: parent.left
                   anchors.leftMargin: 10
               }
-
-              TextField {
-                  id: textField4
-                  x: 709
-                  y: 289
-                  placeholderText: qsTr("Text Field")
+              ComboBox {
+                  id: genderSelect
+                  x: 640
+                  y: 448
+                  width: 100
+                  model: ["female", "male"]
               }
               spacing: 50
               anchors.horizontalCenterOffset: 0
@@ -149,79 +152,79 @@ Rectangle {
           }
 
           RowLayout {
-              id: ageField
+              id: ageRow
               x: -15
               width: 250
               height: 50
-              anchors.top: genderField.bottom
+              anchors.top: genderRow.bottom
               anchors.topMargin: 30
               Label {
-                  id: label5
+                  id: ageLabel
                   y: 292
-                  text: qsTr("Label")
+                  text: qsTr("AGE")
                   anchors.left: parent.left
                   anchors.leftMargin: 10
               }
-
-              TextField {
-                  id: textField5
-                  x: 709
-                  y: 289
-                  placeholderText: qsTr("Text Field")
+              ComboBox {
+                  id: ageSelect
+                  x: 640
+                  y: 368
+                  width: 100
+                  model: ["18-25", "26-34", "35-44", "45-54", "55+"]
               }
-              spacing: 50
+              spacing: 102
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
 
           RowLayout {
-              id: ethnicityField
+              id: ethnicityRow
               x: -17
               width: 250
               height: 50
-              anchors.top: ageField.bottom
+              anchors.top: ageRow.bottom
               anchors.topMargin: 30
               Label {
-                  id: label6
+                  id: ethnicityLabel
                   y: 292
-                  text: qsTr("Label")
+                  text: qsTr("ETHNICITY")
                   anchors.left: parent.left
                   anchors.leftMargin: 10
               }
-
-              TextField {
-                  id: textField6
-                  x: 709
-                  y: 289
-                  placeholderText: qsTr("Text Field")
+              ComboBox {
+                  id: ethnicitySelect
+                  x: 640
+                  y: 528
+                  width: 100
+                  model: ["Black", "White"]
               }
-              spacing: 50
+              spacing: 55
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
 
           RowLayout {
-              id: incomeField
+              id: incomeRow
               x: -20
               width: 250
               height: 50
-              anchors.top: ethnicityField.bottom
+              anchors.top: ethnicityRow.bottom
               anchors.topMargin: 30
               Label {
-                  id: label7
+                  id: incomeLabel
                   y: 292
-                  text: qsTr("Label")
+                  text: qsTr("INCOME")
                   anchors.left: parent.left
                   anchors.leftMargin: 10
               }
-
-              TextField {
-                  id: textField7
-                  x: 709
-                  y: 289
-                  placeholderText: qsTr("Text Field")
+              ComboBox {
+                  id: incomeSelect
+                  x: 640
+                  y: 608
+                  width: 100
+                  model: ["30k-", "30-50k", "50-80k", "80-150k", "150k+"] // by tax bracket???
               }
-              spacing: 50
+              spacing: 73
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
@@ -230,7 +233,7 @@ Rectangle {
               id: submissionButton
               x: 922
               text: qsTr("SUBMIT")
-              anchors.top: incomeField.bottom
+              anchors.top: incomeRow.bottom
               anchors.topMargin: 50
               anchors.horizontalCenter: parent.horizontalCenter
           }
