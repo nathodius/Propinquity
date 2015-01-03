@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>LoginPage.qml</file>
+        <file>CreateAcctPage.qml</file>
+        <file>TabView.qml</file>
     </qresource>
 </RCC>

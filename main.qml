@@ -12,8 +12,8 @@ ApplicationWindow {
 
     menuBar: MenuBar {
         Menu {
-            visible: false
-            title: qsTr("&OPTIONS")
+            visible: true
+            title: qsTr("&options")
             MenuItem {
                 text: qsTr("&Account")
                 //onTriggered:

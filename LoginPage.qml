@@ -1,10 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.2
+import QtQuick.Layouts 1.1
 
 Rectangle {
     id: rectangle1
     width: 200
-    height: 300
+    height: 350
 
     Label {
         id: title
@@ -54,7 +55,7 @@ Rectangle {
     }
 
     Button {
-        id: button1
+        id: loginButton
         x: 62
         text: qsTr("LOGIN")
         anchors.horizontalCenter: parent.horizontalCenter
@@ -62,6 +63,43 @@ Rectangle {
         transformOrigin: Item.Center
         anchors.top: passwordField.bottom
         anchors.topMargin: 30
+        onClicked: content.source = "TabView.qml"
+    }
+
+    Label {
+        id: createAcct
+        x: 83
+        text: qsTr("Create an Account")
+        font.underline: true
+        verticalAlignment: Text.AlignVCenter
+        font.pixelSize: 12
+        textFormat: Text.PlainText
+        font.family: "Tahoma"
+        anchors.horizontalCenter: parent.horizontalCenter
+        horizontalAlignment: Text.AlignHCenter
+        anchors.top: loginButton.bottom
+        anchors.topMargin: 30
+    }
+
+    MouseArea {
+        id: createAcctArea
+        x: 52
+        y: 274
+        width: 97
+        height: 15
+        anchors.horizontalCenter: createAcct.horizontalCenter
+        anchors.verticalCenter: createAcct.verticalCenter
+        onClicked: content.source = "CreateAcctPage.qml"
+    }
+
+    ColumnLayout {
+        id: columnLayout1
+        x: 50
+        y: 103
+        width: 200
+        height: 350
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
     }
 }
 
