@@ -12,10 +12,12 @@ ApplicationWindow {
 
     menuBar: MenuBar {
         Menu {
-            title: qsTr("&Menu")
+            visible: false
+            title: qsTr("&OPTIONS")
             MenuItem {
                 text: qsTr("&Account")
                 //onTriggered:
+                visible: false
             }
             MenuItem {
                 text: qsTr("E&xit")
@@ -34,7 +36,8 @@ ApplicationWindow {
 
     Loader {
         id: content
-        //source:
+        source: "LoginPage.qml"
+        anchors.fill: parent
     }
 
 }
