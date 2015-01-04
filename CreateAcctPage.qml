@@ -23,10 +23,10 @@ Rectangle {
             id: scroller
             width: Screen.width
             height: Screen.height
-            anchors.verticalCenterOffset: 15
-            anchors.horizontalCenterOffset: -47
+            anchors.verticalCenterOffset: 41
+            anchors.horizontalCenterOffset: -68
             contentWidth: Screen.width
-            contentHeight: 800
+            contentHeight: 900
             maximumFlickVelocity: 1500
             boundsBehavior: Flickable.DragOverBounds
             anchors.horizontalCenter: parent.horizontalCenter
@@ -36,6 +36,10 @@ Rectangle {
             Label {
                                 id: title
                                 text: qsTr("Complete the form.")
+                                font.family: "Tahoma"
+                                font.pixelSize: 16
+                                textFormat: Text.PlainText
+                                horizontalAlignment: Text.AlignHCenter
                                 anchors.top: parent.top
                                 anchors.topMargin: 50
                                 anchors.horizontalCenter: parent.horizontalCenter
@@ -67,7 +71,7 @@ Rectangle {
                     id: emailField
                     x: 709
                     y: 289
-                    placeholderText: qsTr("Text Field")
+                    placeholderText: qsTr("")
                 }
 
             }
@@ -92,7 +96,7 @@ Rectangle {
                   id: passwordField
                   x: 709
                   y: 289
-                  placeholderText: qsTr("Text Field")
+                  placeholderText: qsTr("")
               }
               spacing: 50
               anchors.horizontalCenter: parent.horizontalCenter
@@ -118,7 +122,7 @@ Rectangle {
                   id: password_reEnterField
                   x: 709
                   y: 289
-                  placeholderText: qsTr("Text Field")
+                  placeholderText: qsTr("")
               }
               spacing: 50
               anchors.horizontalCenter: parent.horizontalCenter
@@ -147,7 +151,7 @@ Rectangle {
                   anchors.leftMargin: 50
                   model: ["female", "male"]
               }
-              spacing: 1
+              spacing: 2
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
@@ -173,7 +177,7 @@ Rectangle {
                   width: 100
                   model: ["18-25", "26-34", "35-44", "45-54", "55+"]
               }
-              spacing: 105.1
+              spacing: 106
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
@@ -199,7 +203,7 @@ Rectangle {
                   width: 100
                   model: ["Black", "White"]
               }
-              spacing: 48
+              spacing: 49
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
@@ -225,7 +229,7 @@ Rectangle {
                   width: 100
                   model: ["30k-", "30-50k", "50-80k", "80-150k", "150k+"] // by tax bracket???
               }
-              spacing: 67
+              spacing: 69
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
@@ -233,7 +237,7 @@ Rectangle {
           Button {
               id: submissionButton
               x: 922
-              text: qsTr("SUBMIT")
+              text: qsTr("SUBMIT & LOGIN")
               anchors.top: incomeRow.bottom
               anchors.topMargin: 50
               anchors.horizontalCenter: parent.horizontalCenter
@@ -242,10 +246,10 @@ Rectangle {
                   user.email = emailField.getText()
                   user.password = passwordField.getText()
                   user.password_reEnter = password_reEnterField.getText()
-                  user.gender = genderSelect.getText()
-                  user.age = ageSelectField.getText()
-                  user.ethnicity = ethnicitySelect.getText()
-                  user.income = incomeSelect.getText()
+                  user.gender = genderSelect.currentText
+                  user.age = ageSelect.currentText
+                  user.ethnicity = ethnicitySelect.currentText
+                  user.income = incomeSelect.currentText
               }
               // capture credentials
           }

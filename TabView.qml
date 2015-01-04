@@ -6,15 +6,28 @@ Rectangle {
         anchors.fill: parent
         Tab {
             title: "Feed 1"
-            Rectangle { color: "red" }
+            Loader {
+                id: feed1
+                source: "Feed1.qml"
+                anchors.fill: parent
+            }
+
         }
         Tab {
             title: "Feed 2"
-            Rectangle { color: "blue" }
+            Loader {
+                id: feed2
+                //source: "LoginPage.qml"
+                anchors.fill: parent
+            }
         }
         Tab {
             title: "Feed 3"
-            Rectangle { color: "green" }
+            Loader {
+                id: feed3
+                //source: "LoginPage.qml"
+                anchors.fill: parent
+            }
         }
     }
 }

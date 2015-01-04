@@ -16,11 +16,25 @@ ApplicationWindow {
             visible: true
             title: qsTr("&options")
             MenuItem {
+                id: feeds
+                text: qsTr("&Feeds")
+                //onTriggered:
+                visible: true
+                onTriggered: content.source = "TabView.qml"
+            }
+            MenuItem {
                 id: account
                 text: qsTr("&Account")
                 //onTriggered:
                 visible: true
                 onTriggered: content.source = "AcctInfoPage.qml"
+            }
+            MenuItem {
+                id: logout
+                text: qsTr("&Logout")
+                //onTriggered:
+                visible: true
+                onTriggered: content.source = "LoginPage.qml"
             }
             MenuItem {
                 text: qsTr("E&xit")

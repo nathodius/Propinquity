@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.1
 import cppClasses 1.0
+import QtQuick.Window 2.0
 
 Rectangle {
     id: rectangle1
@@ -10,7 +11,22 @@ Rectangle {
 
     Login {
       id: login
+      // load data from backend
     }
+
+    Flickable {
+        id: scroller
+        width: Screen.width
+        height: Screen.height
+        //anchors.verticalCenterOffset: 41
+        //anchors.horizontalCenterOffset: -68
+        contentWidth: Screen.width
+        contentHeight: 400
+        maximumFlickVelocity: 1500
+        boundsBehavior: Flickable.DragOverBounds
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        flickableDirection: Flickable.VerticalFlick
 
     Label {
         id: title
@@ -102,7 +118,7 @@ Rectangle {
         onClicked: content.source = "CreateAcctPage.qml"
     }
 
-    ColumnLayout {
+    /*ColumnLayout {
         id: columnLayout1
         x: 50
         y: 103
@@ -110,6 +126,7 @@ Rectangle {
         height: 350
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+    }*/
     }
 }
 
