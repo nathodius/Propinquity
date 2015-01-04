@@ -26,9 +26,9 @@ Rectangle {
             anchors.verticalCenterOffset: 15
             anchors.horizontalCenterOffset: -47
             contentWidth: Screen.width
-            contentHeight: 700
+            contentHeight: 800
             maximumFlickVelocity: 1500
-            boundsBehavior: Flickable.StopAtBounds
+            boundsBehavior: Flickable.DragOverBounds
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             flickableDirection: Flickable.VerticalFlick
@@ -135,18 +135,19 @@ Rectangle {
                   id: genderLabel
                   y: 292
                   width: 70
-                  text: qsTr("GENDER")
+                  text: qsTr("GENDER   ")
                   anchors.left: parent.left
                   anchors.leftMargin: 10
               }
               ComboBox {
                   id: genderSelect
-                  x: 640
                   y: 448
                   width: 100
+                  anchors.left: genderLabel.right
+                  anchors.leftMargin: 50
                   model: ["female", "male"]
               }
-              spacing: 50
+              spacing: 1
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
@@ -172,7 +173,7 @@ Rectangle {
                   width: 100
                   model: ["18-25", "26-34", "35-44", "45-54", "55+"]
               }
-              spacing: 102
+              spacing: 105.1
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
@@ -198,7 +199,7 @@ Rectangle {
                   width: 100
                   model: ["Black", "White"]
               }
-              spacing: 55
+              spacing: 48
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
@@ -224,7 +225,7 @@ Rectangle {
                   width: 100
                   model: ["30k-", "30-50k", "50-80k", "80-150k", "150k+"] // by tax bracket???
               }
-              spacing: 73
+              spacing: 67
               anchors.horizontalCenterOffset: 0
               anchors.horizontalCenter: parent.horizontalCenter
           }
@@ -236,6 +237,8 @@ Rectangle {
               anchors.top: incomeRow.bottom
               anchors.topMargin: 50
               anchors.horizontalCenter: parent.horizontalCenter
+              onClicked: content.source = "TabView.qml"
+              // capture credentials
           }
 
             // District information

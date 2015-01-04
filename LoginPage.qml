@@ -63,7 +63,11 @@ Rectangle {
         transformOrigin: Item.Center
         anchors.top: passwordField.bottom
         anchors.topMargin: 30
-        onClicked: content.source = "TabView.qml"
+        onClicked: {
+            content.source = "TabView.qml"
+            //MenuBar.menus.
+        }
+        // capture credentials
     }
 
     Label {

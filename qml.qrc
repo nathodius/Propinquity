@@ -4,5 +4,6 @@
         <file>LoginPage.qml</file>
         <file>CreateAcctPage.qml</file>
         <file>TabView.qml</file>
+        <file>AcctInfoPage.qml</file>
     </qresource>
 </RCC>

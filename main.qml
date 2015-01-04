@@ -15,9 +15,11 @@ ApplicationWindow {
             visible: true
             title: qsTr("&options")
             MenuItem {
+                id: account
                 text: qsTr("&Account")
                 //onTriggered:
-                visible: false
+                visible: true
+                onTriggered: content.source = "AcctInfoPage.qml"
             }
             MenuItem {
                 text: qsTr("E&xit")

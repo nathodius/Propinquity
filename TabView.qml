@@ -5,15 +5,15 @@ Rectangle {
     TabView {
         anchors.fill: parent
         Tab {
-            title: "Red"
+            title: "Feed 1"
             Rectangle { color: "red" }
         }
         Tab {
-            title: "Blue"
+            title: "Feed 2"
             Rectangle { color: "blue" }
         }
         Tab {
-            title: "Green"
+            title: "Feed 3"
             Rectangle { color: "green" }
         }
     }
