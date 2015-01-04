@@ -237,7 +237,16 @@ Rectangle {
               anchors.top: incomeRow.bottom
               anchors.topMargin: 50
               anchors.horizontalCenter: parent.horizontalCenter
-              onClicked: content.source = "TabView.qml"
+              onClicked: {
+                  content.source = "TabView.qml"
+                  user.email = emailField.getText()
+                  user.password = passwordField.getText()
+                  user.password_reEnter = password_reEnterField.getText()
+                  user.gender = genderSelect.getText()
+                  user.age = ageSelectField.getText()
+                  user.ethnicity = ethnicitySelect.getText()
+                  user.income = incomeSelect.getText()
+              }
               // capture credentials
           }
 

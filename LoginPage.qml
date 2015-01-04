@@ -1,11 +1,16 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.1
+import cppClasses 1.0
 
 Rectangle {
     id: rectangle1
     width: 200
     height: 350
+
+    Login {
+      id: login
+    }
 
     Label {
         id: title
@@ -65,7 +70,8 @@ Rectangle {
         anchors.topMargin: 30
         onClicked: {
             content.source = "TabView.qml"
-            //MenuBar.menus.
+            login.email = emailField.getText()
+            login.password = passwordField.getText()
         }
         // capture credentials
     }

@@ -3,6 +3,7 @@ import QtQuick.Controls 1.3
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
+import cppClasses 1.0
 
 ApplicationWindow {
     title: qsTr("Hello World")
@@ -35,6 +36,10 @@ ApplicationWindow {
                 Label { text: "Ivalid email or password" } // Initial label
             }
         }
+
+    User {
+        id: user
+    }
 
     Loader {
         id: content
