@@ -8,18 +8,10 @@ Rectangle {
     EnginioClient {
         id: client
         backendId: {"54a9c4b05a3d8b5e1a00c046"} // copy/paste your EDS instance backend id here
-        onFinished: console.log("The object was created." + reply.data)
+        onFinished: console.log("Request served." + reply.data)
         onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
     }
 
-/*Component.onCompleted: {
-    var city = {
-        objectType: "objects.city",
-        name: "Helsinki",
-        population: 606000
-    };
-    client.create(city);
-}*/
     EnginioModel {
         id: enginioModel
         //backendId: {"54a9c4b05a3d8b5e1a00c046"}
@@ -29,9 +21,6 @@ Rectangle {
     ListView {
         anchors.fill: parent
         model: enginioModel
-        /*delegate: Text {
-            text: name + ": " + population
-        }*/
         delegate: NewsDelegate {
 
         }

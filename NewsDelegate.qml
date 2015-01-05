@@ -17,6 +17,13 @@ Item {
     //width: parent.width - 50
 
      Column {
+
+         /*MouseArea {
+             width: parent.width
+             height: parent.height
+             //onClicked: source = "AcctInfoPage.qml"
+         }*/
+
          id: column
          x: 20; y: 20
          width: parent.width - 100
@@ -32,6 +39,11 @@ Item {
              id: titleText
              text: issue; width: (parent.width - 200); wrapMode: Text.WordWrap
              font { bold: true; family: "Helvetica"; pointSize: 16 }
+             MouseArea {
+                 width: parent.width
+                 height: parent.height
+                 onClicked: content.source = "IssueProfile.qml"
+             }
          }
 
          Text {

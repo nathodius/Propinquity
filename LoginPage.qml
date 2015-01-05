@@ -90,7 +90,7 @@ Rectangle {
         // capture credentials
     }
 
-    Label {
+    /*Label {
         id: createAcct
         x: 83
         text: qsTr("Create an Account")
@@ -103,9 +103,9 @@ Rectangle {
         horizontalAlignment: Text.AlignHCenter
         anchors.top: loginButton.bottom
         anchors.topMargin: 30
-    }
+    }*/
 
-    MouseArea {
+    /*MouseArea {
         id: createAcctArea
         x: 52
         y: 274
@@ -114,7 +114,7 @@ Rectangle {
         anchors.horizontalCenter: createAcct.horizontalCenter
         anchors.verticalCenter: createAcct.verticalCenter
         onClicked: content.source = "CreateAcctPage.qml"
-    }
+    }*/
 
     /*ColumnLayout {
         id: columnLayout1

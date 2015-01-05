@@ -2,10 +2,10 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>LoginPage.qml</file>
-        <file>CreateAcctPage.qml</file>
         <file>TabView.qml</file>
         <file>AcctInfoPage.qml</file>
         <file>LocalFeed.qml</file>
         <file>NewsDelegate.qml</file>
+        <file>IssueProfile.qml</file>
     </qresource>
 </RCC>

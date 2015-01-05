@@ -4,6 +4,7 @@ import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 import cppClasses 1.0
+import QtQuick.Controls.Styles 1.2
 
 ApplicationWindow {
     title: qsTr("Hello World")
@@ -60,5 +61,6 @@ ApplicationWindow {
         source: "LoginPage.qml"
         anchors.fill: parent
     }
+
 
 }
