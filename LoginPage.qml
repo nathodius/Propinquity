@@ -18,8 +18,6 @@ Rectangle {
         id: scroller
         width: Screen.width
         height: Screen.height
-        //anchors.verticalCenterOffset: 41
-        //anchors.horizontalCenterOffset: -68
         contentWidth: Screen.width
         contentHeight: 400
         maximumFlickVelocity: 1500

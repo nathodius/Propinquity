@@ -5,26 +5,26 @@ Rectangle {
     TabView {
         anchors.fill: parent
         Tab {
-            title: "Feed 1"
+            title: "Local"
             Loader {
-                id: feed1
-                source: "Feed1.qml"
+                id: localFeed
+                source: "LocalFeed.qml"
                 anchors.fill: parent
             }
 
         }
         Tab {
-            title: "Feed 2"
+            title: "State"
             Loader {
-                id: feed2
+                id: stateFeed
                 //source: "LoginPage.qml"
                 anchors.fill: parent
             }
         }
         Tab {
-            title: "Feed 3"
+            title: "Federal"
             Loader {
-                id: feed3
+                id: federalFeed
                 //source: "LoginPage.qml"
                 anchors.fill: parent
             }

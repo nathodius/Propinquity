@@ -5,6 +5,7 @@
         <file>CreateAcctPage.qml</file>
         <file>TabView.qml</file>
         <file>AcctInfoPage.qml</file>
-        <file>Feed1.qml</file>
+        <file>LocalFeed.qml</file>
+        <file>NewsDelegate.qml</file>
     </qresource>
 </RCC>

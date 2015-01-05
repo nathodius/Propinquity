@@ -37,7 +37,7 @@ Rectangle {
                                 id: title
                                 text: qsTr("Complete the form.")
                                 font.family: "Tahoma"
-                                font.pixelSize: 16
+                                font.pixelSize: 18
                                 textFormat: Text.PlainText
                                 horizontalAlignment: Text.AlignHCenter
                                 anchors.top: parent.top
