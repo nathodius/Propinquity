@@ -78,7 +78,7 @@ Item {
             spacing: 15
 
             Row {
-                spacing: 15
+                spacing: 10
                 CheckBox {
                     text: "Y"
                     style: CheckBoxStyle {
@@ -98,10 +98,9 @@ Item {
                             }
                         }
                     }
-                  onCheckedChanged: {
-                      votes++
-                      yeas++
-                  }
+                    onCheckedChanged: {
+                        checkYea.visible = true
+                    }
                 }
                 CheckBox {
                     text: "N"
@@ -123,8 +122,7 @@ Item {
                         }
                     }
                     onCheckedChanged: {
-                        votes++
-                        nays++
+                        checkNay.visible = true
                     }
                 }
 
@@ -140,6 +138,111 @@ Item {
         }
 
     }
+
+    Rectangle {
+        id: checkYea
+        width: parent.width
+        height: parent.height
+        visible: false
+        color: "green"
+        Row {
+            //height: 10 + txt.height + voteButton.height
+            spacing: 40
+            Column {
+                Rectangle{
+                    height: 31
+                    width: parent.width
+                    color: "green"
+                }
+                Button {
+                    id: canelButton
+                    text: "Cancel vote"
+                    onClicked: checkYea.visible = false
+                    //anchors.left: checkYea
+                    //anchors.leftMargin: 5
+                }
+            }
+            Column {
+                spacing: 10
+                //anchors.top: parent.top
+                //anchors.topMargin: 25
+                //anchors.horizontalCenter: parent.horizontalCenter
+                Rectangle{
+                    height: 10
+                    width: parent.width
+                    color: "green"
+                }
+                Text {
+                    id: txt
+                    //anchors.centerIn: parent
+                    text: "VOTE YEA"
+                }
+                Button {
+                    id: voteButton
+                    text: "Cast vote."
+                    onClicked: {
+                        votes++
+                        yeas++
+                        checkYea.visible = false
+                        delegate.visible = false
+                        delegate.height = 0
+                    }
+                }
+            }
+        }
+    }
+
+    Rectangle {
+        id: checkNay
+        color: "red"
+        width: parent.width
+        height: parent.height
+        visible: false
+        Row {
+            spacing: 40
+            Column {
+                Rectangle{
+                    height: 31
+                    width: parent.width
+                    color: "red"
+                }
+                Button {
+                    id: canelButton2
+                    text: "Cancel vote"
+                    onClicked: checkNay.visible = false
+                    //anchors.left: checkYea
+                    //anchors.leftMargin: 5
+                }
+            }
+
+            Column {
+                spacing: 10
+                //anchors.top: parent.top
+                //anchors.topMargin: 25
+                //anchors.horizontalCenter: parent.horizontalCenter
+                Rectangle{
+                    height: 10
+                    width: parent.width
+                    color: "red"
+                }
+                Text {
+                    //anchors.centerIn: parent
+                    text: "VOTE NAY"
+                }
+                Button {
+                    text: "Cast vote."
+                    onClicked: {
+                        votes++
+                        yeas++
+                        checkYea.visible = false
+                        delegate.visible = false
+                        delegate.height = 0
+                    }
+                }
+            }
+        }
+    }
+
     Rectangle {
         width: parent.width; height: 1; color: "#cccccc"
         anchors.bottom: parent.bottom

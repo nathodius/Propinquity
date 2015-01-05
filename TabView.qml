@@ -8,6 +8,14 @@ Rectangle {
     TabView {
         anchors.fill: parent
         Tab {
+            title: "Tracking"
+            Loader {
+                id: trackingFeed
+                //source: "LocalFeed.qml"
+                anchors.fill: parent
+            }
+        }
+        Tab {
             title: "Local"
             Loader {
                 id: localFeed
