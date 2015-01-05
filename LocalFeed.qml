@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Enginio 1.0
 import QtQuick.Controls 1.2
+import QtQuick.Dialogs 1.1
 
 Rectangle {
     color: "white"
@@ -19,6 +20,7 @@ Rectangle {
         query: { "objectType": "objects.localFeed" }
     }
     ListView {
+        id: view
         anchors.fill: parent
         model: enginioModel
         delegate: NewsDelegate {
