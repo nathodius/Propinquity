@@ -6,6 +6,7 @@ import QtQuick.Dialogs 1.1
 Rectangle {
     color: "white"
     anchors.fill: parent
+
     EnginioClient {
         id: client
         backendId: {"54a9c4b05a3d8b5e1a00c046"} // copy/paste your EDS instance backend id here

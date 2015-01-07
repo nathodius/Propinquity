@@ -5,6 +5,7 @@ import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 import cppClasses 1.0
 import QtQuick.Controls.Styles 1.2
+import Enginio 1.0
 
 ApplicationWindow {
     title: qsTr("Hello World")
@@ -12,7 +13,37 @@ ApplicationWindow {
     height: 480
     visible: true
 
+    EnginioClient {
+        id: client
+        backendId: {"54a9c4b05a3d8b5e1a00c046"} // copy/paste your EDS instance backend id here
+        onFinished: console.log("Request served." + reply.data)
+        onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
+    }
+
     menuBar: MenuBar {
+        Menu {
+            visible: true
+            title: qsTr("&Tracking")
+        }
+        Menu {
+            visible: true
+            title: qsTr("&Federal")
+        }
+        Menu {
+            visible: true
+            title: qsTr("&State")
+        }
+        Menu {
+            visible: true
+            title: qsTr("&Local")
+
+            Loader {
+                id: localFeed
+                source: "LocalFeed.qml"
+                anchors.fill: parent
+            }
+        }
+
         Menu {
             visible: true
             title: qsTr("&options")
@@ -58,7 +89,7 @@ ApplicationWindow {
 
     Loader {
         id: content
-        source: "LoginPage.qml"
+        source: "RegisterUser.qml"
         anchors.fill: parent
     }
 

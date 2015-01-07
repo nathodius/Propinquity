@@ -7,6 +7,6 @@
         <file>LocalFeed.qml</file>
         <file>NewsDelegate.qml</file>
         <file>IssueProfile.qml</file>
-        <file>issueBanner.qml</file>
+        <file>RegisterUser.qml</file>
     </qresource>
 </RCC>
