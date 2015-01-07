@@ -21,6 +21,9 @@ Rectangle {
         query: { "objectType": "objects.localFeed" }
     }
     ListView {
+        //anchors.top: local.top
+        //anchors.topMargin: 75
+        boundsBehavior: Flickable.StopAtBounds
         id: view
         anchors.fill: parent
         model: enginioModel

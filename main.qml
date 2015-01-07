@@ -6,6 +6,7 @@ import QtQuick.Layouts 1.1
 import cppClasses 1.0
 import QtQuick.Controls.Styles 1.2
 import Enginio 1.0
+//import QtQuick.
 
 ApplicationWindow {
     title: qsTr("Hello World")
@@ -20,29 +21,9 @@ ApplicationWindow {
         onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
     }
 
-    menuBar: MenuBar {
-        Menu {
-            visible: true
-            title: qsTr("&Tracking")
-        }
-        Menu {
-            visible: true
-            title: qsTr("&Federal")
-        }
-        Menu {
-            visible: true
-            title: qsTr("&State")
-        }
-        Menu {
-            visible: true
-            title: qsTr("&Local")
-
-            Loader {
-                id: localFeed
-                source: "LocalFeed.qml"
-                anchors.fill: parent
-            }
-        }
+    /*menuBar: MenuBar {
+        id: menBar
+        visible: false
 
         Menu {
             visible: true
@@ -73,7 +54,20 @@ ApplicationWindow {
                 onTriggered: Qt.quit();
             }
         }
-    }
+    }*/
+
+    /*ToolBar {
+        anchors.bottom: parent.bottom
+        tools: ToolBarLayout {
+
+            ToolButton {
+                iconSource: "toolbar-back"
+            }
+            ToolButton {
+                iconSource: "toolbar-menu"
+            }
+        }
+    }*/
 
     statusBar: StatusBar {
         visible: false

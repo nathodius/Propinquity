@@ -16,6 +16,8 @@ Rectangle {
             }
         }
         Tab {
+            id: local
+            clip: true
             title: "Local"
             Loader {
                 id: localFeed

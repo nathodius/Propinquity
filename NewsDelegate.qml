@@ -4,6 +4,7 @@ import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Styles 1.3
 import QtQuick.Dialogs 1.2
+import Enginio 1.0
 
 Item {
     id: delegate
@@ -46,6 +47,13 @@ Item {
                                 anchors.fill: parent
                             }
                         }
+                    }
+                    onCheckedChanged: {
+                        var reply = client.update(
+                                    { "id": "54ab156f5a3d8b5e1a022983", // use user id
+                                      //"objectType": "objects.localFeed",
+                                      //"localTracking": id// use the selected issue id
+                                    } , Enginio.UserOperation)
                     }
                 }
 
