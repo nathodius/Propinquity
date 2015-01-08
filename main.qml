@@ -105,7 +105,7 @@ ApplicationWindow {
         }
     }*/
 
-    statusBar: StatusBar {
+    /*statusBar: StatusBar {
         id: navBar
         visible: false
         height: 50
@@ -125,16 +125,21 @@ ApplicationWindow {
                 text: "Search" // Chronological
             }
         }
-    }
+    }*/
 
     User {
         id: user
+    }
+
+    CurrentIssue {
+        id: currentIssue
     }
 
     Loader {
         id: content
         source: "TabView.qml"
         anchors.fill: parent
+        //var issueID
     }
 
 

@@ -6,10 +6,9 @@ import QtQuick.Window 2.0
 import QtQuick.Layouts 1.1
 
 Rectangle {
-    id: issueProf
+    id: container
     color: "white"
     anchors.fill: parent
-    //var issueID
 
     EnginioClient {
         id: client
@@ -23,11 +22,7 @@ Rectangle {
         //backendId: {"54a9c4b05a3d8b5e1a00c046"}
         client: client
         query:{
-            "objectType": "objects.localFeed",
-            //"id": "54a9f4925a3d8b5e1a00f2ca",
-            query: {
-                "id": currentIssue.id
-            },
+            "objectType": "objects.federalFeed",
             sort: [{"sortBy": "issue", "direction": "asc"}] // DEFAULT TO ALPHA ORDER
         }
     }
@@ -42,7 +37,7 @@ Rectangle {
         //anchors.bottom: parent.bottom
         anchors.bottomMargin: 35
         model: enginioModel
-        delegate: IssueProfileDelegate {
+        delegate: NewsDelegate {
         }
     }
 
@@ -68,10 +63,6 @@ Rectangle {
                 //anchors
                 onAccepted: {
                     row.state = "NORMAL"
-                    var reply = client.fullTextSearch( {
-                        //"objectType": "objects.localFeed",
-                        "issue": "issue6"
-                    })
                 }
             }
         }
@@ -143,5 +134,7 @@ Rectangle {
         }
     }
 }
+
+
 
 

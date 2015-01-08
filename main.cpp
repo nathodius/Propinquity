@@ -3,6 +3,7 @@
 #include <QtQml>
 #include "user.h"
 #include "login.h"
+#include "currentissue.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<User>("cppClasses", 1, 0, "User");
     qmlRegisterType<Login>("cppClasses", 1, 0, "Login");
+    qmlRegisterType<CurrentIssue>("cppClasses", 1, 0, "CurrentIssue");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

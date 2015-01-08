@@ -12,11 +12,6 @@ Item {
     width: delegate.ListView.view.width - 20
     x: 5
 
-    Loader {
-        id: issueProf
-        //source: "TabView.qml"
-        anchors.fill: parent
-    }
 
     Row {
 
@@ -71,8 +66,15 @@ Item {
                     MouseArea {
                         width: parent.width
                         height: parent.height
-                        onClicked: {currentIssue.id = id
-                            content.source = "IssueProfile.qml"}
+                        onClicked: {
+                            /*localFeed.source = "IssueProfile.qml"
+                            stateFeed.source = "IssueProfile.qml"
+                            federalFeed.source = "IssueProfile.qml"*/
+                            content.source = "IssueProfile.qml"
+                        }
+                        /*if (currentIssue.feed == "localFeed") {
+
+                        }*/
                     }
                 }
 
@@ -254,4 +256,5 @@ Item {
         anchors.bottom: parent.bottom
     }
 }
+
 

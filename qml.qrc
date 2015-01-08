@@ -6,7 +6,11 @@
         <file>AcctInfoPage.qml</file>
         <file>LocalFeed.qml</file>
         <file>NewsDelegate.qml</file>
-        <file>IssueProfile.qml</file>
+        <file>IssueProfileDelegate.qml</file>
         <file>RegisterUser.qml</file>
+        <file>TrackingFeed.qml</file>
+        <file>StateFeed.qml</file>
+        <file>FederalFeed.qml</file>
+        <file>IssueProfile.qml</file>
     </qresource>
 </RCC>

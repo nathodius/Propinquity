@@ -223,7 +223,7 @@ Flickable {
                                     "income": incomeSelect.currentText,
                                     "voterID": null
                                 }, Enginio.UserOperation)
-                    engine.state = "NONVOTER"
+                    engine.state = "TOS"
                 }
             }
         }
@@ -255,7 +255,48 @@ Flickable {
             anchors.topMargin: 25
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
-                content.source = "TabView.qml"
+                //content.source = "TabView.qml"
+                engine.state = "TOS"
+                /*var reply = client.create(
+                            { "username": emailField.text,
+                                "password": passwordField.text,
+                                "age": ageSelect.currentText,
+                                "gender": genderSelect.currentText,
+                                "income": incomeSelect.currentText,
+                                "voterID": idField.text
+                            }, Enginio.UserOperation)*/
+            }
+        }
+
+        Label {
+            id: participation
+            visible: false
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: 200
+            text: "Participation language"
+        }
+
+        /* Terms of Service */
+        Label {
+            id: tos
+            visible: false
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: 200
+            text: "Terms of Service..."
+        }
+
+        Button {
+            id: accept
+            text: "accept"
+            anchors.top: tos.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.margins: 100
+            visible: false
+            onClicked: {
+                //content.source = "TabView.qml"
+                engine.state = "FINALWORDS"
                 var reply = client.create(
                             { "username": emailField.text,
                                 "password": passwordField.text,
@@ -265,15 +306,6 @@ Flickable {
                                 "voterID": idField.text
                             }, Enginio.UserOperation)
             }
-        }
-
-        Label {
-            id: participation
-            visible: false
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.topMargin: 100
-            text: "Participation language"
         }
 
         states: [
@@ -338,14 +370,31 @@ Flickable {
             }
             ,
             State {
-                name: "NONVOTER"
+                name: "TOS"
                 PropertyChanges { target: welcome; visible: false}
                 PropertyChanges { target: leggo; visible: false}
-                PropertyChanges { target: timer; onTriggered: content.source = "TabView.qml", navBar.visible = true}
+                PropertyChanges { target: timer; running: false}
+                //PropertyChanges { target: timer; onTriggered: content.source = "TabView.qml", navBar.visible = true}
                 PropertyChanges { target: voterID; visible: false}
                 PropertyChanges { target: idField; visible: false}
                 PropertyChanges { target: voterID; visible: false}
                 PropertyChanges { target: voterIDBtn; visible: false}
+                PropertyChanges { target: tos; visible: true}
+                PropertyChanges { target: accept; visible: true}
+            }
+            ,
+            State {
+                name: "FINALWORDS"
+                PropertyChanges { target: welcome; visible: false}
+                PropertyChanges { target: leggo; visible: false}
+                PropertyChanges { target: timer; onTriggered: content.source = "TabView.qml"/*, navBar.visible = true*/}
+                PropertyChanges { target: voterID; visible: false}
+                PropertyChanges { target: idField; visible: false}
+                PropertyChanges { target: voterID; visible: false}
+                PropertyChanges { target: voterIDBtn; visible: false}
+                PropertyChanges { target: tos; visible: false}
+                PropertyChanges { target: accept; visible: false}
+
                 PropertyChanges { target: participation; visible: true}
             }
         ]
