@@ -4,9 +4,12 @@ import QtQuick.Dialogs 1.1
 import Enginio 1.0
 
 Rectangle {
+    color: "lightblue"
 
     TabView {
         anchors.fill: parent
+
+        //navBar.visible: true
         Tab {
             title: "Tracking"
             Loader {

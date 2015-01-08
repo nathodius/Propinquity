@@ -65,6 +65,7 @@ Flickable {
             id: passwordField
             placeholderText: qsTr("Password")
             visible: false
+            echoMode: 2
             anchors.top: emailField.bottom
             anchors.topMargin: 25
             anchors.horizontalCenter: parent.horizontalCenter
@@ -73,6 +74,7 @@ Flickable {
             id: password2Field
             placeholderText: qsTr("Password")
             visible: false
+            echoMode: 2
             anchors.top: passwordField.bottom
             anchors.topMargin: 25
             anchors.horizontalCenter: parent.horizontalCenter
@@ -339,7 +341,7 @@ Flickable {
                 name: "NONVOTER"
                 PropertyChanges { target: welcome; visible: false}
                 PropertyChanges { target: leggo; visible: false}
-                PropertyChanges { target: timer; onTriggered: content.source = "TabView.qml"}
+                PropertyChanges { target: timer; onTriggered: content.source = "TabView.qml", navBar.visible = true}
                 PropertyChanges { target: voterID; visible: false}
                 PropertyChanges { target: idField; visible: false}
                 PropertyChanges { target: voterID; visible: false}

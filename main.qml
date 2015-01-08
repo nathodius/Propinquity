@@ -9,6 +9,8 @@ import Enginio 1.0
 //import QtQuick.
 
 ApplicationWindow {
+    id: main
+
     title: qsTr("Hello World")
     width: 640
     height: 480
@@ -20,6 +22,40 @@ ApplicationWindow {
         onFinished: console.log("Request served." + reply.data)
         onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
     }
+
+    /*Item {
+        id: toolbar
+
+        property alias button1Label: button1.text
+        property alias button2Label: button2.text
+        property alias button2Visible: button2.visible
+
+        signal button1Clicked
+        signal button2Clicked
+
+        BorderImage { source: "images/titlebar.sci"; width: parent.width; height: parent.height + 14; y: -7 }
+
+        Row {
+            anchors.right: parent.right; anchors.rightMargin: 5; y: 3; height: 32; spacing: 30
+            Button {
+                id: button1
+                width: 140; height: 32
+                onClicked: toolbar.button1Clicked()
+            }
+
+            Button {
+                id: button2; width: 140; height: 32
+                onClicked: toolbar.button2Clicked()
+            }
+        }
+    }*/
+
+    /*Rectangle {
+        color: "pink"
+        width: Screen.width
+        height: 50
+        anchors.bottom: parent.bottom
+    }*/
 
     /*menuBar: MenuBar {
         id: menBar
@@ -70,12 +106,26 @@ ApplicationWindow {
     }*/
 
     statusBar: StatusBar {
+        id: navBar
         visible: false
-            RowLayout {
-                anchors.fill: parent
-                Label { text: "Ivalid email or password" } // Initial label
+        height: 50
+        RowLayout {
+            //height: 50
+            anchors.centerIn: parent
+            //Label { text: "Ivalid email or password" } // Initial label
+            spacing: 10
+            Button {
+                id: trendingBtn
+                text: "Trending"
+            }
+            Button {
+                text: "New"
+            }
+            Button {
+                text: "Search" // Chronological
             }
         }
+    }
 
     User {
         id: user
@@ -83,7 +133,7 @@ ApplicationWindow {
 
     Loader {
         id: content
-        source: "RegisterUser.qml"
+        source: "TabView.qml"
         anchors.fill: parent
     }
 
