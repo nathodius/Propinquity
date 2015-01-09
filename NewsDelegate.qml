@@ -72,7 +72,12 @@ Item {
                         width: parent.width
                         height: parent.height
                         onClicked: {currentIssue.id = id
-                            content.source = "IssueProfile.qml"}
+                            content.source = "IssueProfile.qml"
+                            /*localNav.visible = false
+                            federalNav.visible = false
+                            stateNav.visible = false
+                            trackingNav.visible = false*/
+                        }
                     }
                 }
 
@@ -165,19 +170,6 @@ Item {
             Column {
                 spacing: 10
                 anchors.centerIn: parent
-                //anchors.top: parent.top
-                //anchors.topMargin: 25
-                //anchors.horizontalCenter: parent.horizontalCenter
-                /*Rectangle{
-                    height: 10
-                    width: parent.width
-                    color: "green"
-                }*/
-                /*Text {
-                    id: txt
-                    //anchors.centerIn: parent
-                    text: "VOTE YEA"
-                }*/
                 Row {
                     spacing: 25
                     Button {
@@ -195,8 +187,6 @@ Item {
                         id: canelButton
                         text: "Cancel vote"
                         onClicked: checkYea.visible = false
-                        //anchors.left: checkYea
-                        //anchors.leftMargin: 5
                     }
                 }
             }
@@ -213,18 +203,6 @@ Item {
         Column {
             anchors.centerIn: parent
             spacing: 10
-            //anchors.top: parent.top
-            //anchors.topMargin: 25
-            //anchors.horizontalCenter: parent.horizontalCenter
-            /*Rectangle{
-                height: 10
-                width: parent.width
-                color: "darkred"
-            }*/
-            /*Text {
-                //anchors.centerIn: parent
-                text: "VOTE NAY"
-            }*/
             Row {
                 spacing: 25
                 Button {
@@ -241,8 +219,6 @@ Item {
                     id: canelButton2
                     text: "Cancel vote"
                     onClicked: checkNay.visible = false
-                    //anchors.left: checkYea
-                    //anchors.leftMargin: 5
                 }
             }
         }

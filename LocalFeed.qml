@@ -43,7 +43,7 @@ Rectangle {
 
     Rectangle {
 
-        id: nav
+        id: localNav
         visible: true
         color: "lightgrey"
         anchors.bottom: parent.bottom

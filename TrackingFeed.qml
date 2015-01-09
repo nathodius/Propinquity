@@ -42,7 +42,7 @@ Rectangle {
 
     Rectangle {
 
-        id: nav
+        id: trackingNav
         visible: true
         color: "lightgrey"
         anchors.bottom: parent.bottom

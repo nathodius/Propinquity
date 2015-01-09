@@ -43,7 +43,7 @@ Rectangle {
 
     Rectangle {
 
-        id: nav
+        id: stateNav
         visible: true
         color: "lightgrey"
         anchors.bottom: parent.bottom

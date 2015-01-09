@@ -19,7 +19,9 @@ Rectangle {
                 id: trackingFeed
                 source: "TrackingFeed.qml"
                 anchors.fill: parent
+                //onLoaded: {currentIssue.feed = "TRACKING"}
             }
+
         }
         Tab {
             id: local
@@ -29,7 +31,9 @@ Rectangle {
                 id: localFeed
                 source: "LocalFeed.qml"
                 anchors.fill: parent
+                //onLoaded: {currentIssue.feed = "LOCAL"}
             }
+
         }
         Tab {
             clip: true
@@ -38,7 +42,9 @@ Rectangle {
                 id: stateFeed
                 source: "StateFeed.qml"
                 anchors.fill: parent
+                //onLoaded: {currentIssue.feed = "STATE"}
             }
+
         }
         Tab {
             clip: true
@@ -47,7 +53,9 @@ Rectangle {
                 id: federalFeed
                 source: "FederalFeed.qml"
                 anchors.fill: parent
+                //onLoaded: {currentIssue.feed = "FEDERAL"}
             }
+
         }
     }
 }

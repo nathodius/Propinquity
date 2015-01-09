@@ -11,9 +11,10 @@ Item {
     height: column.height + 40
     width: delegate.ListView.view.width - 20
     x: 5
-
+    //anchors.fill: Screen
 
     Row {
+        //anchors.l
 
         Column {
 
@@ -66,15 +67,7 @@ Item {
                     MouseArea {
                         width: parent.width
                         height: parent.height
-                        onClicked: {
-                            /*localFeed.source = "IssueProfile.qml"
-                            stateFeed.source = "IssueProfile.qml"
-                            federalFeed.source = "IssueProfile.qml"*/
-                            content.source = "IssueProfile.qml"
-                        }
-                        /*if (currentIssue.feed == "localFeed") {
-
-                        }*/
+                        onClicked: content.source = "IssueProfile.qml"
                     }
                 }
 
@@ -164,45 +157,45 @@ Item {
         visible: false
         color: "darkgreen"
 
-            Column {
-                spacing: 10
-                anchors.centerIn: parent
-                //anchors.top: parent.top
-                //anchors.topMargin: 25
-                //anchors.horizontalCenter: parent.horizontalCenter
-                /*Rectangle{
+        Column {
+            spacing: 10
+            anchors.centerIn: parent
+            //anchors.top: parent.top
+            //anchors.topMargin: 25
+            //anchors.horizontalCenter: parent.horizontalCenter
+            /*Rectangle{
                     height: 10
                     width: parent.width
                     color: "green"
                 }*/
-                /*Text {
+            /*Text {
                     id: txt
                     //anchors.centerIn: parent
                     text: "VOTE YEA"
                 }*/
-                Row {
-                    spacing: 25
-                    Button {
-                        id: voteButton
-                        text: "Cast vote."
-                        onClicked: {
-                            votes++
-                            yeas++
-                            checkYea.visible = false
-                            delegate.visible = false
-                            delegate.height = 0
-                        }
+            Row {
+                spacing: 25
+                Button {
+                    id: voteButton
+                    text: "Cast vote."
+                    onClicked: {
+                        votes++
+                        yeas++
+                        checkYea.visible = false
+                        delegate.visible = false
+                        delegate.height = 0
                     }
-                    Button {
-                        id: canelButton
-                        text: "Cancel vote"
-                        onClicked: checkYea.visible = false
-                        //anchors.left: checkYea
-                        //anchors.leftMargin: 5
-                    }
+                }
+                Button {
+                    id: canelButton
+                    text: "Cancel vote"
+                    onClicked: checkYea.visible = false
+                    //anchors.left: checkYea
+                    //anchors.leftMargin: 5
                 }
             }
         }
+    }
 
 
     Rectangle {
@@ -252,8 +245,45 @@ Item {
     }
 
     Rectangle {
+        id: bottomLine
         width: parent.width; height: 1; color: "#cccccc"
         anchors.bottom: parent.bottom
+    }
+
+    Flickable {
+        clip: true
+        anchors.top: bottomLine.bottom
+        //anchors.margins: 25
+        id: scroller
+        width: Screen.width
+        height: Screen.height
+        contentWidth: Screen.width
+        contentHeight: Screen.height
+        maximumFlickVelocity: 1500
+        boundsBehavior: Flickable.DragOverBounds
+        flickableDirection: Flickable.VerticalFlick
+
+        Column {
+            width: parent.width
+            spacing: 30
+            //anchors.top: bottomLine.bottom
+            anchors.left: parent.left
+            anchors.topMargin: 30
+            anchors.leftMargin: 1
+            anchors.rightMargin: 1
+            Label { text: "Detailed Description"}
+
+            Text {
+                id: descriptionText2
+                width: parent.width - 50; color: "black"; text: "summary a;a;dkfjaa'a;skdjf'as;kdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffflsdkjf a;lsdkjf ;as;ldfj aalskdjf;laksdhf;alksdhf;lasdhfa;lkdshfaldskfhls"
+                wrapMode: Text.WordWrap; font.family: "Helvetica"
+            }
+
+            Label { text: "Political Players"}
+
+            Label { text: "News/Educational Sources"}
+
+        }
     }
 }
 
