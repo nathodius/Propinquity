@@ -151,11 +151,13 @@ Item {
     }
 
     Rectangle {
+        anchors.top: parent.top
+        anchors.topMargin: 4
         id: checkYea
         width: parent.width
-        height: parent.height
+        height: parent.height - 8
         visible: false
-        color: "darkgreen"
+        color: "lightgreen"
 
         Column {
             spacing: 10
@@ -184,14 +186,18 @@ Item {
                         checkYea.visible = false
                         delegate.visible = false
                         delegate.height = 0
+                        content.source = "TabView.qml"
                     }
                 }
                 Button {
                     id: canelButton
                     text: "Cancel vote"
-                    onClicked: checkYea.visible = false
-                    //anchors.left: checkYea
-                    //anchors.leftMargin: 5
+                    onClicked: {
+                        content.source = "TabView.qml"
+                        checkYea.visible = false
+                        //anchors.left: checkYea
+                        //anchors.leftMargin: 5
+                    }
                 }
             }
         }
@@ -200,9 +206,11 @@ Item {
 
     Rectangle {
         id: checkNay
-        color: "darkred"
+        color: "#FE2E64"
+        anchors.top: parent.top
+        anchors.topMargin: 4
         width: parent.width
-        height: parent.height
+        height: parent.height - 8
         visible: false
 
         Column {

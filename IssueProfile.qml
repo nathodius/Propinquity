@@ -48,13 +48,13 @@ Rectangle {
 
     Rectangle {
 
-        id: nav
+        id: localNav
         visible: true
         color: "lightgrey"
         anchors.bottom: parent.bottom
         width: Screen.width
         //anchors.margins: 0
-        height: 50
+        height: 55
 
         RowLayout {
             id: row2
@@ -85,61 +85,11 @@ Rectangle {
 
             Button {
                 id: trendingBtn
-                text: "Trending"
+                text: "Back"
                 onClicked: {
-                    enginioModel.query = {
-                        "objectType": "objects.localFeed",
-                        limit: 5,
-                        sort: [{"sortBy": "votes", "direction": "desc"}],
-                        query: {
-                            "votes": {
-                                "$gt": 5
-                            }
-                        }
-                    }
+                    content.source = "TabView.qml"
                 }
             }
-            Button {
-                id: newBtn
-                text: "New"
-                onClicked: {
-                    enginioModel.query = {
-                        "objectType": "objects.localFeed",
-                        limit: 5,
-                        sort: [{"sortBy": "createdAt", "direction": "desc"}],
-                        query: {
-                            "votes": {
-                                "$gt": 5
-                            }
-                        }
-                    }
-                }
-            }
-            Button {
-                id: searchBtn
-                text: "Search" // Chronological
-                onClicked: {
-                    row.state = "SEARCH"
-                    //row.visible = false
-                    //row2.visible = true
-                    //parent.visible = false
-                }
-            }
-
-            states: [
-                State {
-                    name: "SEARCH"
-                    PropertyChanges { target: row; visible: false}
-                    PropertyChanges { target: row2; visible: true}
-                },
-                State {
-                    name: "NORMAL"
-                    PropertyChanges { target: row; visible:true}
-                    PropertyChanges { target: row2; visible: false}
-                }
-
-            ]
-
         }
     }
 }

@@ -49,7 +49,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         width: Screen.width
         //anchors.margins: 0
-        height: 50
+        height: 55
 
         RowLayout {
             id: row2
@@ -80,6 +80,7 @@ Rectangle {
 
             Button {
                 id: trendingBtn
+                height: parent.height
                 text: "Trending"
                 onClicked: {
                     enginioModel.query = {

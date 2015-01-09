@@ -76,7 +76,9 @@ Item {
                             /*localNav.visible = false
                             federalNav.visible = false
                             stateNav.visible = false
-                            trackingNav.visible = false*/
+
+
+trackingNav.visible = false*/
                         }
                     }
                 }
@@ -161,11 +163,13 @@ Item {
     }
 
     Rectangle {
+        anchors.top: parent.top
+        anchors.topMargin: 4
         id: checkYea
         width: parent.width
-        height: parent.height
+        height: parent.height - 8
         visible: false
-        color: "darkgreen"
+        color: "lightgreen"
 
             Column {
                 spacing: 10
@@ -195,9 +199,11 @@ Item {
 
     Rectangle {
         id: checkNay
-        color: "darkred"
+        color: "#FE2E64"
+        anchors.top: parent.top
+        anchors.topMargin: 4
         width: parent.width
-        height: parent.height
+        height: parent.height - 8
         visible: false
 
         Column {
