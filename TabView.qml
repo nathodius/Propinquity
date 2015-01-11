@@ -9,7 +9,10 @@ Rectangle {
 
 
     TabView {
+        id: tabView
         anchors.fill: parent
+        onCurrentIndexChanged: currentIssue.feed = currentIndex
+        //currentIndex: currentIssue.feed
 
         //navBar.visible: true
         Tab {
@@ -17,21 +20,22 @@ Rectangle {
             title: "Tracking"
             Loader {
                 id: trackingFeed
-                source: "TrackingFeed.qml"
+                //source: "TrackingFeed.qml"
                 anchors.fill: parent
                 //onLoaded: {currentIssue.feed = "TRACKING"}
-            }
-
+            } 
         }
         Tab {
             id: local
             clip: true
             title: "Local"
+            //Component.onCompleted: currentIssue.feed = "objects.localFeed"
             Loader {
                 id: localFeed
                 source: "LocalFeed.qml"
                 anchors.fill: parent
                 //onLoaded: {currentIssue.feed = "LOCAL"}
+                //Component.onCompleted: currentIssue.feed = "objects.localFeed"
             }
 
         }

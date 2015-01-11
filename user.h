@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QStringList>
 
 class User : public QObject
 {
@@ -14,9 +15,11 @@ class User : public QObject
     Q_PROPERTY(QString age MEMBER m_age)
     Q_PROPERTY(QString ethnicity MEMBER m_ethnicity)
     Q_PROPERTY(QString income MEMBER m_income)
+    Q_PROPERTY(QStringList tracking MEMBER m_tracking)
 public:
     explicit User(QObject *parent = 0);
     ~User();
+    Q_INVOKABLE void addToTracking(QString id);
 
 private:
     QString m_email;
@@ -27,6 +30,7 @@ private:
     QString m_age;
     QString m_ethnicity;
     QString m_income;
+    QStringList m_tracking;
 
 
 signals:

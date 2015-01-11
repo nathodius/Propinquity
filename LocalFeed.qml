@@ -23,7 +23,7 @@ Rectangle {
         client: client
         query:{
             "objectType": "objects.localFeed",
-            sort: [{"sortBy": "issue", "direction": "asc"}] // DEFAULT TO ALPHA ORDER
+            sort: [{"sortBy": "createdAt", "direction": "desc"}] // DEFAULT TO MOST RECENT
         }
     }
 
@@ -49,7 +49,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         width: Screen.width
         //anchors.margins: 0
-        height: 55
+        height: 30
 
         RowLayout {
             id: row2
@@ -76,49 +76,52 @@ Rectangle {
             //height: 50
             anchors.centerIn: parent
             //Label { text: "Ivalid email or password" } // Initial label
-            spacing: 10
+            spacing: Screen.width*0.3
 
-            Button {
-                id: trendingBtn
-                height: parent.height
-                text: "Trending"
-                onClicked: {
-                    enginioModel.query = {
-                        "objectType": "objects.localFeed",
-                        limit: 5,
-                        sort: [{"sortBy": "votes", "direction": "desc"}],
-                        query: {
-                            "votes": {
-                                "$gt": 5
-                            }
-                        }
-                    }
+            Image {
+                id: trending
+                sourceSize.width: 30
+                sourceSize.height: 30
+                source: "qrc:trending.png"
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: {
+                      enginioModel.query = {
+                          "objectType": "objects.localFeed",
+                          limit: 5,
+                          sort: [{"sortBy": "votes", "direction": "desc"}],
+                      }
+                  }
                 }
             }
-            Button {
-                id: newBtn
-                text: "New"
-                onClicked: {
-                    enginioModel.query = {
-                        "objectType": "objects.localFeed",
-                        limit: 5,
-                        sort: [{"sortBy": "createdAt", "direction": "desc"}],
-                        query: {
-                            "votes": {
-                                "$gt": 5
-                            }
-                        }
-                    }
+
+            Image {
+                id: alpha
+                sourceSize.width: 20
+                sourceSize.height: 20
+                source: "qrc:alphabeticalSort.png"
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: {
+                      enginioModel.query = {
+                          "objectType": "objects.localFeed",
+                          limit: 5,
+                          sort: [{"sortBy": "issue", "direction": "asc"}],
+                      }
+                  }
                 }
             }
-            Button {
-                id: searchBtn
-                text: "Search" // Chronological
-                onClicked: {
-                    row.state = "SEARCH"
-                    //row.visible = false
-                    //row2.visible = true
-                    //parent.visible = false
+
+            Image {
+                id: search
+                sourceSize.width: 20
+                sourceSize.height: 20
+                source: "qrc:search.png"
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: {
+                      row.state = "SEARCH"
+                  }
                 }
             }
 

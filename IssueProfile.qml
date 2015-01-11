@@ -23,7 +23,7 @@ Rectangle {
         //backendId: {"54a9c4b05a3d8b5e1a00c046"}
         client: client
         query:{
-            "objectType": "objects.localFeed",
+            "objectType": currentIssue.findFeed(),
             //"id": "54a9f4925a3d8b5e1a00f2ca",
             query: {
                 "id": currentIssue.id
@@ -48,13 +48,13 @@ Rectangle {
 
     Rectangle {
 
-        id: localNav
+        id: issueNav
         visible: true
         color: "lightgrey"
         anchors.bottom: parent.bottom
         width: Screen.width
         //anchors.margins: 0
-        height: 55
+        height: 30
 
         RowLayout {
             id: row2
@@ -83,11 +83,16 @@ Rectangle {
             //Label { text: "Ivalid email or password" } // Initial label
             spacing: 10
 
-            Button {
-                id: trendingBtn
-                text: "Back"
-                onClicked: {
-                    content.source = "TabView.qml"
+            Image {
+                id: back
+                sourceSize.width: 20
+                sourceSize.height: 20
+                source: "qrc:back.png"
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: {
+                      content.source = "TabView.qml"
+                  }
                 }
             }
         }

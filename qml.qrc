@@ -12,5 +12,14 @@
         <file>StateFeed.qml</file>
         <file>FederalFeed.qml</file>
         <file>IssueProfile.qml</file>
+        <file>thumbsUp.png</file>
+        <file>thumbsDownRed.png</file>
+        <file>greenThumbsUp.png</file>
+        <file>starChecked.png</file>
+        <file>starUnchecked.png</file>
+        <file>trending.png</file>
+        <file>alphabeticalSort.png</file>
+        <file>search.png</file>
+        <file>back.png</file>
     </qresource>
 </RCC>

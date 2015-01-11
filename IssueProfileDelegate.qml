@@ -29,34 +29,17 @@ Item {
                 width: parent.width
                 //height: (2/3)*parent.
 
-                CheckBox {
-                    //text: "NAY"
-                    //anchors.right: titleText.left
-                    style: CheckBoxStyle {
-                        indicator: Rectangle {
-                            implicitWidth: 16
-                            implicitHeight: 16
-                            radius: 3
-                            border.color: control.activeFocus ? "darkblue" : "gray"
-                            border.width: 1
-                            Rectangle {
-                                visible: control.checked
-                                color: "#555"
-                                border.color: "#333"
-                                radius: 1
-                                anchors.margins: 4
-                                anchors.fill: parent
-                            }
-                        }
-                    }
-                    onCheckedChanged: {
-                        var reply = client.update(
-                                    {   //"objectType": "Users",
-                                        "id": "54ab156f5a3d8b5e1a022983", // use user id
-                                        "push": {
-                                            "localTracking": "yeeee"
-                                        }
-                                    } , Enginio.UserOperation)
+                Image {
+                    id: star
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:starUnchecked.png"
+                    MouseArea {
+                      id: mouseArea
+                      anchors.fill: parent
+                      onClicked: {
+                          //checkYea.visible = true
+                      }
                     }
                 }
 
@@ -90,50 +73,29 @@ Item {
 
             Row {
                 spacing: 10
-                CheckBox {
-                    text: "Y"
-                    style: CheckBoxStyle {
-                        indicator: Rectangle {
-                            implicitWidth: 16
-                            implicitHeight: 16
-                            radius: 3
-                            border.color: control.activeFocus ? "darkblue" : "gray"
-                            border.width: 1
-                            Rectangle {
-                                visible: control.checked
-                                color: "#555"
-                                border.color: "#333"
-                                radius: 1
-                                anchors.margins: 4
-                                anchors.fill: parent
-                            }
-                        }
-                    }
-                    onCheckedChanged: {
-                        checkYea.visible = true
+                Image {
+                    id: thumbsUp
+                    sourceSize.width: 25
+                    sourceSize.height: 25
+                    source: "qrc:greenThumbsUp.png"
+                    MouseArea {
+                      anchors.fill: parent
+                      onClicked: {
+                          checkYea.visible = true
+                      }
                     }
                 }
-                CheckBox {
-                    text: "N"
-                    style: CheckBoxStyle {
-                        indicator: Rectangle {
-                            implicitWidth: 16
-                            implicitHeight: 16
-                            radius: 3
-                            border.color: control.activeFocus ? "darkblue" : "gray"
-                            border.width: 1
-                            Rectangle {
-                                visible: control.checked
-                                color: "#555"
-                                border.color: "#333"
-                                radius: 1
-                                anchors.margins: 4
-                                anchors.fill: parent
-                            }
-                        }
-                    }
-                    onCheckedChanged: {
-                        checkNay.visible = true
+
+                Image {
+                    id: redThumbsDown
+                    sourceSize.width: 25
+                    sourceSize.height: 25
+                    source: "qrc:thumbsDownRed.png"
+                    MouseArea {
+                      anchors.fill: parent
+                      onClicked: {
+                          checkNay.visible = true
+                      }
                     }
                 }
 
@@ -238,6 +200,8 @@ Item {
                         checkYea.visible = false
                         delegate.visible = false
                         delegate.height = 0
+                        content.source = "TabView.qml"
+                        tabView.currentIndex = currentIssue.feed
                     }
                 }
                 Button {
@@ -261,17 +225,19 @@ Item {
     Flickable {
         clip: true
         anchors.top: bottomLine.bottom
+        anchors.topMargin: 25
         //anchors.margins: 25
         id: scroller
         width: Screen.width
         height: Screen.height
         contentWidth: Screen.width
-        contentHeight: Screen.height
+        contentHeight: 1.25 * Screen.height
         maximumFlickVelocity: 1500
         boundsBehavior: Flickable.DragOverBounds
         flickableDirection: Flickable.VerticalFlick
 
         Column {
+            id: contents
             width: parent.width
             spacing: 30
             //anchors.top: bottomLine.bottom
@@ -283,7 +249,7 @@ Item {
 
             Text {
                 id: descriptionText2
-                width: parent.width - 50; color: "black"; text: "summary a;a;dkfjaa'a;skdjf'as;kdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffflsdkjf a;lsdkjf ;as;ldfj aalskdjf;laksdhf;alksdhf;lasdhfa;lkdshfaldskfhls"
+                width: parent.width - 50; color: "black"; text: description
                 wrapMode: Text.WordWrap; font.family: "Helvetica"
             }
 

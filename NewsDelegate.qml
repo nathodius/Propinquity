@@ -31,11 +31,22 @@ Item {
                 id: row
                 spacing: 25
                 width: parent.width
-                //height: (2/3)*parent.
 
-                CheckBox {
-                    //text: "NAY"
-                    //anchors.right: titleText.left
+                Image {
+                    id: star
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:starUnchecked.png"
+                    MouseArea {
+                      id: mouseArea
+                      anchors.fill: parent
+                      onClicked: {
+                          //checkYea.visible = true
+                      }
+                    }
+                }
+
+                /*CheckBox {
                     style: CheckBoxStyle {
                         indicator: Rectangle {
                             implicitWidth: 16
@@ -54,31 +65,28 @@ Item {
                         }
                     }
                     onCheckedChanged: {
+                        //user.tracking = federalTracking.append(id)
                         var reply = client.update(
                                     {   //"objectType": "Users",
                                         "id": "54ab156f5a3d8b5e1a022983", // use user id
-                                        "push": {
+                                        "$push": {
                                             "localTracking": "yeeee"
                                         }
                                     } , Enginio.UserOperation)
+                        user.addToTracking(id)
                     }
-                }
+                }*/
 
                 Text {
                     id: titleText
-                    text: issue; width: (parent.width - 200); wrapMode: Text.WordWrap
+                    text: issue; wrapMode: Text.WordWrap
                     font { bold: true; family: "Helvetica"; pointSize: 24 }
                     MouseArea {
-                        width: parent.width
-                        height: parent.height
-                        onClicked: {currentIssue.id = id
+                        anchors.fill: parent
+                        onClicked: {
+                            currentIssue.id = id
+                            //currentIssue.feed =
                             content.source = "IssueProfile.qml"
-                            /*localNav.visible = false
-                            federalNav.visible = false
-                            stateNav.visible = false
-
-
-trackingNav.visible = false*/
                         }
                     }
                 }
@@ -102,7 +110,7 @@ trackingNav.visible = false*/
 
             Row {
                 spacing: 10
-                CheckBox {
+                /*CheckBox {
                     text: "Y"
                     style: CheckBoxStyle {
                         indicator: Rectangle {
@@ -124,8 +132,20 @@ trackingNav.visible = false*/
                     onCheckedChanged: {
                         checkYea.visible = true
                     }
+                }*/
+                Image {
+                    id: thumbsUp
+                    sourceSize.width: 25
+                    sourceSize.height: 25
+                    source: "qrc:greenThumbsUp.png"
+                    MouseArea {
+                      anchors.fill: parent
+                      onClicked: {
+                          checkYea.visible = true
+                      }
+                    }
                 }
-                CheckBox {
+                /*CheckBox {
                     text: "N"
                     style: CheckBoxStyle {
                         indicator: Rectangle {
@@ -146,6 +166,19 @@ trackingNav.visible = false*/
                     }
                     onCheckedChanged: {
                         checkNay.visible = true
+                    }
+                }*/
+
+                Image {
+                    id: redThumbsDown
+                    sourceSize.width: 25
+                    sourceSize.height: 25
+                    source: "qrc:thumbsDownRed.png"
+                    MouseArea {
+                      anchors.fill: parent
+                      onClicked: {
+                          checkNay.visible = true
+                      }
                     }
                 }
 
@@ -169,7 +202,7 @@ trackingNav.visible = false*/
         width: parent.width
         height: parent.height - 8
         visible: false
-        color: "lightgreen"
+        color: "green"
 
             Column {
                 spacing: 10
@@ -199,7 +232,8 @@ trackingNav.visible = false*/
 
     Rectangle {
         id: checkNay
-        color: "#FE2E64"
+        //color: "#FE2E64"
+        color: "Red"
         anchors.top: parent.top
         anchors.topMargin: 4
         width: parent.width
