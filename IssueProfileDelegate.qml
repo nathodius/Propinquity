@@ -148,14 +148,14 @@ Item {
                         checkYea.visible = false
                         delegate.visible = false
                         delegate.height = 0
-                        content.source = "TabView.qml"
+                        content.source = "Content.qml"
                     }
                 }
                 Button {
                     id: canelButton
                     text: "Cancel vote"
                     onClicked: {
-                        content.source = "TabView.qml"
+                        //content.source = "TabView.qml"
                         checkYea.visible = false
                         //anchors.left: checkYea
                         //anchors.leftMargin: 5
@@ -200,8 +200,8 @@ Item {
                         checkYea.visible = false
                         delegate.visible = false
                         delegate.height = 0
-                        content.source = "TabView.qml"
-                        tabView.currentIndex = currentIssue.feed
+                        content.source = "Content.qml"
+                        //tabView.currentIndex = currentIssue.feed
                     }
                 }
                 Button {
@@ -249,7 +249,7 @@ Item {
 
             Text {
                 id: descriptionText2
-                width: parent.width - 50; color: "black"; text: description
+                width: parent.width - 50; color: "black"; //text: description
                 wrapMode: Text.WordWrap; font.family: "Helvetica"
             }
 

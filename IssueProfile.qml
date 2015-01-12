@@ -50,30 +50,15 @@ Rectangle {
 
         id: issueNav
         visible: true
-        color: "lightgrey"
+        color: "#F2F2F2"
         anchors.bottom: parent.bottom
         width: Screen.width
         //anchors.margins: 0
         height: 30
 
-        RowLayout {
-            id: row2
-            anchors.centerIn: parent
-            visible: false
-            PropertyChanges { target: row; visible: false}
-            TextField {
-                //visible: false
-                id: searchBar
-                placeholderText: qsTr("search")
-                //anchors
-                onAccepted: {
-                    row.state = "NORMAL"
-                    var reply = client.fullTextSearch( {
-                        //"objectType": "objects.localFeed",
-                        "issue": "issue6"
-                    })
-                }
-            }
+        Rectangle {
+            width: parent.width; height: 1; color:"blue" //color: "#cccccc"
+            anchors.top: parent.top
         }
 
         RowLayout {
@@ -92,7 +77,15 @@ Rectangle {
                   anchors.fill: parent
                   onClicked: {
                       //tabView.currentIndex = currentIssue.feed
-                      content.source = "TabView.qml"
+                      content.source = "Content.qml"
+                      //feed.source = "stateFeed.qml"
+                      //currentIssue.
+                      //currentIssue.backToFeed = true
+                      /*enginioModel.query = {
+                          "objectType": "objects.stateFeed",
+                          //limit: 5,
+                          sort: [{"sortBy": "issue", "direction": "asc"}],
+                      }*/
                   }
                 }
             }

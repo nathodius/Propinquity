@@ -23,7 +23,10 @@ ApplicationWindow {
         onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
     }
 
-
+    CurrentIssue {
+        id: currentIssue
+        //backToFeedChanged: content.source = findFeed()
+    }
 
     Loader {
             id: content
@@ -140,9 +143,9 @@ ApplicationWindow {
         id: user
     }
 
-    CurrentIssue {
+    /*CurrentIssue {
         id: currentIssue
-    }
+    }*/
 
     /*Loader {
         id: content

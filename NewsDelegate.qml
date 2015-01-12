@@ -87,6 +87,7 @@ Item {
                             currentIssue.id = id
                             //currentIssue.feed =
                             content.source = "IssueProfile.qml"
+                            //currentIssue.backToFeed = false
                         }
                     }
                 }
@@ -110,29 +111,7 @@ Item {
 
             Row {
                 spacing: 10
-                /*CheckBox {
-                    text: "Y"
-                    style: CheckBoxStyle {
-                        indicator: Rectangle {
-                            implicitWidth: 16
-                            implicitHeight: 16
-                            radius: 3
-                            border.color: control.activeFocus ? "darkblue" : "gray"
-                            border.width: 1
-                            Rectangle {
-                                visible: control.checked
-                                color: "#555"
-                                border.color: "#333"
-                                radius: 1
-                                anchors.margins: 4
-                                anchors.fill: parent
-                            }
-                        }
-                    }
-                    onCheckedChanged: {
-                        checkYea.visible = true
-                    }
-                }*/
+
                 Image {
                     id: thumbsUp
                     sourceSize.width: 25
@@ -145,29 +124,6 @@ Item {
                       }
                     }
                 }
-                /*CheckBox {
-                    text: "N"
-                    style: CheckBoxStyle {
-                        indicator: Rectangle {
-                            implicitWidth: 16
-                            implicitHeight: 16
-                            radius: 3
-                            border.color: control.activeFocus ? "darkblue" : "gray"
-                            border.width: 1
-                            Rectangle {
-                                visible: control.checked
-                                color: "#555"
-                                border.color: "#333"
-                                radius: 1
-                                anchors.margins: 4
-                                anchors.fill: parent
-                            }
-                        }
-                    }
-                    onCheckedChanged: {
-                        checkNay.visible = true
-                    }
-                }*/
 
                 Image {
                     id: redThumbsDown

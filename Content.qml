@@ -28,126 +28,28 @@ Rectangle {
         }
     }*/
 
+    /*CurrentIssue {
+        id: currentIssue
+        //backToFeedChanged: content.source = findFeed()
+    }*/
+
     /* News Feed */
 
     Loader {
         id: feed
-        source: "TrackingFeed.qml"
+        source: currentIssue.findFeedSource()//"Tracking.qml"
         anchors.fill: parent
         //var issueID
         anchors.top: tabBar.bottom
         anchors.topMargin: 30
+        //onBackToFeedChanged:
     }
-
-
-    /*Rectangle {
-
-        id: localNav
-        visible: true
-        color: "lightgrey"
-        //anchors.top: feed.bottom
-        //anchors.topMargin: 30
-        anchors.bottom: parent.bottom
-        width: Screen.width
-        //anchors.margins: 0
-        height: 30
-
-        RowLayout {
-            id: row2
-            anchors.centerIn: parent
-            visible: false
-            PropertyChanges { target: row; visible: false}
-            TextField {
-                //visible: false
-                id: searchBar
-                placeholderText: qsTr("search")
-                //anchors
-                onAccepted: {
-                    row.state = "NORMAL"
-                    var reply = client.fullTextSearch( {
-                                                          //"objectType": "objects.localFeed",
-                                                          "issue": "issue6"
-                                                      })
-                }
-            }
-        }
-
-        RowLayout {
-            id: row
-            //height: 50
-            anchors.centerIn: parent
-            //Label { text: "Ivalid email or password" } // Initial label
-            spacing: Screen.width*0.3
-
-            Image {
-                id: trending
-                sourceSize.width: 30
-                sourceSize.height: 30
-                source: "qrc:trending.png"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        enginioModel.query = {
-                            "objectType": "objects.localFeed",
-                            //limit: 5,
-                            sort: [{"sortBy": "votes", "direction": "desc"}],
-                        }
-                    }
-                }
-            }
-
-            Image {
-                id: alpha
-                sourceSize.width: 20
-                sourceSize.height: 20
-                source: "qrc:alphabeticalSort.png"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        enginioModel.query = {
-                            "objectType": "objects.localFeed",
-                            //limit: 5,
-                            sort: [{"sortBy": "issue", "direction": "asc"}],
-                        }
-                    }
-                }
-            }
-
-            Image {
-                id: search
-                sourceSize.width: 20
-                sourceSize.height: 20
-                source: "qrc:search.png"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        row.state = "SEARCH"
-                    }
-                }
-            }
-
-            states: [
-                State {
-                    name: "SEARCH"
-                    PropertyChanges { target: row; visible: false}
-                    PropertyChanges { target: row2; visible: true}
-                },
-                State {
-                    name: "NORMAL"
-                    PropertyChanges { target: row; visible:true}
-                    PropertyChanges { target: row2; visible: false}
-                }
-
-            ]
-
-        }
-    }*/
 
     Rectangle {
 
         id: tabBar
         visible: true
-        color: "lightgrey"
+        color: "#F2F2F2"//color: "lightgrey"
         anchors.top: parent.top
         width: Screen.width
         //anchors.margins: 0
@@ -169,6 +71,7 @@ Rectangle {
                     anchors.fill: parent
                     onClicked: {
                         feed.source = "TrackingFeed.qml"
+                        currentIssue.feed = 0
                     }
                 }
             }
@@ -182,6 +85,7 @@ Rectangle {
                     anchors.fill: parent
                     onClicked: {
                         feed.source = "LocalFeed.qml"
+                        currentIssue.feed = 1
                     }
                 }
             }
@@ -195,6 +99,7 @@ Rectangle {
                     anchors.fill: parent
                     onClicked: {
                         feed.source = "StateFeed.qml"
+                        currentIssue.feed = 2
                     }
                 }
             }
@@ -208,11 +113,18 @@ Rectangle {
                     anchors.fill: parent
                     onClicked: {
                         feed.source = "FederalFeed.qml"
+                        currentIssue.feed = 3
                     }
                 }
             }
 
         }
+
+        Rectangle {
+            width: parent.width; height: 1; color:"blue"//color: "#cccccc"
+            anchors.top: parent.bottom
+        }
+
     }
 
 }

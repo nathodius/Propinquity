@@ -45,28 +45,55 @@ Rectangle {
 
         id: federalNav
         visible: true
-        color: "lightgrey"
+        color: "#F2F2F2"
         anchors.bottom: parent.bottom
         width: Screen.width
         //anchors.margins: 0
         height: 30
+
+        Rectangle {
+            width: parent.width; height: 1; color:"blue" //color: "#cccccc"
+            anchors.top: parent.top
+        }
 
         RowLayout {
             id: row2
             anchors.centerIn: parent
             visible: false
             PropertyChanges { target: row; visible: false}
+
+            Image {
+                id: cancel
+                sourceSize.width: 20
+                sourceSize.height: 20
+                source: "qrc:x.png"
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: {
+                      enginioModel.query = {
+                          "objectType": "objects.federalFeed",
+                          //limit: 5,
+                          sort: [{"sortBy": "createdAt", "direction": "desc"}]
+
+                      }
+                      row.state = "NORMAL"
+                  }
+                }
+            }
+
             TextField {
                 //visible: false
                 id: searchBar
                 placeholderText: qsTr("search")
                 //anchors
                 onAccepted: {
-                    row.state = "NORMAL"
-                    var reply = client.fullTextSearch( {
-                        //"objectType": "objects.localFeed",
-                        "issue": "issue6"
-                    })
+                    //row.state = "NORMAL"
+                    enginioModel.query = {
+                        "objectType": "objects.federalFeed",
+                        query: {
+                            "issue": searchBar.text
+                        }
+                    }
                 }
             }
         }
