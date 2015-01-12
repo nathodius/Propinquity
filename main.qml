@@ -10,8 +10,8 @@ import Enginio 1.0
 
 ApplicationWindow {
     id: main
-
-    title: qsTr("Hello World")
+    //color: "white"
+    //title: qsTr("Hello World")
     width: 640
     height: 480
     visible: true
@@ -22,6 +22,15 @@ ApplicationWindow {
         onFinished: console.log("Request served." + reply.data)
         onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
     }
+
+
+
+    Loader {
+            id: content
+            source: "Content.qml"
+            anchors.fill: parent
+            //var issueID
+        }
 
     /*Item {
         id: toolbar
@@ -135,12 +144,12 @@ ApplicationWindow {
         id: currentIssue
     }
 
-    Loader {
+    /*Loader {
         id: content
         source: "TabView.qml"
         anchors.fill: parent
         //var issueID
-    }
+    }*/
 
 
 }

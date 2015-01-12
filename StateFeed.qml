@@ -84,7 +84,7 @@ Rectangle {
               onClicked: {
                   enginioModel.query = {
                       "objectType": "objects.stateFeed",
-                      limit: 5,
+                      //limit: 5,
                       sort: [{"sortBy": "votes", "direction": "desc"}],
                   }
               }
@@ -101,7 +101,7 @@ Rectangle {
               onClicked: {
                   enginioModel.query = {
                       "objectType": "objects.stateFeed",
-                      limit: 5,
+                      //limit: 5,
                       sort: [{"sortBy": "issue", "direction": "asc"}],
                   }
               }

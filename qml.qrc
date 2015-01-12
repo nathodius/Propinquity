@@ -21,5 +21,10 @@
         <file>alphabeticalSort.png</file>
         <file>search.png</file>
         <file>back.png</file>
+        <file>tracking.png</file>
+        <file>federal.png</file>
+        <file>local.png</file>
+        <file>state.png</file>
+        <file>Content.qml</file>
     </qresource>
 </RCC>

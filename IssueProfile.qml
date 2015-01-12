@@ -91,6 +91,7 @@ Rectangle {
                 MouseArea {
                   anchors.fill: parent
                   onClicked: {
+                      //tabView.currentIndex = currentIssue.feed
                       content.source = "TabView.qml"
                   }
                 }

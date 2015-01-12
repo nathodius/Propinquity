@@ -16,6 +16,7 @@ Rectangle {
 
         //navBar.visible: true
         Tab {
+            //active: true
             clip: true
             title: "Tracking"
             Loader {
@@ -26,6 +27,7 @@ Rectangle {
             } 
         }
         Tab {
+            //active: true
             id: local
             clip: true
             title: "Local"
@@ -40,6 +42,7 @@ Rectangle {
 
         }
         Tab {
+            //active: true
             clip: true
             title: "State"
             Loader {
@@ -51,6 +54,7 @@ Rectangle {
 
         }
         Tab {
+            //active: true
             clip: true
             title: "Federal"
             Loader {

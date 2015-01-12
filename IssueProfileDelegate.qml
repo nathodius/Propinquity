@@ -225,7 +225,7 @@ Item {
     Flickable {
         clip: true
         anchors.top: bottomLine.bottom
-        anchors.topMargin: 25
+        anchors.topMargin: 5
         //anchors.margins: 25
         id: scroller
         width: Screen.width
