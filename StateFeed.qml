@@ -43,9 +43,9 @@ Rectangle {
 
     Rectangle {
 
-        id: stateNav
+        id: localNav
         visible: true
-        color: "#F2F2F2"
+        color:"#F2F2F2"//color: "lightgrey"
         anchors.bottom: parent.bottom
         width: Screen.width
         //anchors.margins: 0
@@ -53,7 +53,7 @@ Rectangle {
 
         Rectangle {
             width: parent.width; height: 1; color:"blue" //color: "#cccccc"
-            anchors.top: parent.top
+            anchors.bottom: parent.top
         }
 
         RowLayout {
@@ -61,32 +61,35 @@ Rectangle {
             anchors.centerIn: parent
             visible: false
             PropertyChanges { target: row; visible: false}
-
             Image {
                 id: cancel
                 sourceSize.width: 20
                 sourceSize.height: 20
                 source: "qrc:x.png"
                 MouseArea {
-                  anchors.fill: parent
-                  onClicked: {
-                      enginioModel.query = {
-                          "objectType": "objects.stateFeed",
-                          //limit: 5,
-                          sort: [{"sortBy": "createdAt", "direction": "desc"}]
+                    anchors.fill: parent
+                    onClicked: {
+                        enginioModel.query = {
+                            "objectType": "objects.stateFeed",
+                            //limit: 5,
+                            sort: [{"sortBy": "createdAt", "direction": "desc"}]
 
-                      }
-                      row.state = "NORMAL"
-                  }
+                        }
+                        row.state = "NORMAL"
+                    }
                 }
             }
-
             TextField {
                 //visible: false
                 id: searchBar
                 placeholderText: qsTr("search")
                 //anchors
                 onAccepted: {
+                    /*row.state = "NORMAL"
+                    var reply = client.fullTextSearch( {
+                        "objectType": "objects.localFeed",
+                        "issue": "issue6"
+                    })*/
                     enginioModel.query = {
                         "objectType": "objects.stateFeed",
                         query: {
@@ -104,50 +107,73 @@ Rectangle {
             //Label { text: "Ivalid email or password" } // Initial label
             spacing: Screen.width*0.3
 
-        Image {
-            id: trending
-            sourceSize.width: 30
-            sourceSize.height: 30
-            source: "qrc:trending.png"
-            MouseArea {
-              anchors.fill: parent
-              onClicked: {
-                  enginioModel.query = {
-                      "objectType": "objects.stateFeed",
-                      //limit: 5,
-                      sort: [{"sortBy": "votes", "direction": "desc"}],
-                  }
-              }
+            Rectangle {
+                id: trendingHighlighted
+                color: "#F2F2F2"
+                width: 25
+                height: 30
+                Image {
+                    id: trending
+                    anchors.centerIn: parent
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:trending.png"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            enginioModel.query = {
+                                "objectType": "objects.stateFeed",
+                                //limit: 5,
+                                sort: [{"sortBy": "votes", "direction": "desc"}],
+                            }
+                            row.state = "TRENDING_SELECTED"
+                        }
+                    }
+                }
             }
-        }
 
-        Image {
-            id: alpha
-            sourceSize.width: 20
-            sourceSize.height: 20
-            source: "qrc:alphabeticalSort.png"
-            MouseArea {
-              anchors.fill: parent
-              onClicked: {
-                  enginioModel.query = {
-                      "objectType": "objects.stateFeed",
-                      //limit: 5,
-                      sort: [{"sortBy": "issue", "direction": "asc"}],
-                  }
-              }
+            Rectangle {
+                id: alphaHighlighted
+                color: "#F2F2F2"
+                width: 25
+                height: 30
+                Image {
+                    id: alpha
+                    anchors.centerIn: parent
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:alphabeticalSort.png"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            enginioModel.query = {
+                                "objectType": "objects.stateFeed",
+                                //limit: 5,
+                                sort: [{"sortBy": "issue", "direction": "asc"}],
+                            }
+                            row.state = "ALPHA_SELECTED"
+                        }
+                    }
+                }
             }
-        }
 
-            Image {
-                id: search
-                sourceSize.width: 20
-                sourceSize.height: 20
-                source: "qrc:search.png"
-                MouseArea {
-                  anchors.fill: parent
-                  onClicked: {
-                      row.state = "SEARCH"
-                  }
+            Rectangle {
+                id: searchHighlighted
+                color: "#F2F2F2"
+                width: 25
+                height: 30
+                Image {
+                    id: search
+                    anchors.centerIn: parent
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:search.png"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            row.state = "SEARCH"
+                        }
+                    }
                 }
             }
 
@@ -161,6 +187,18 @@ Rectangle {
                     name: "NORMAL"
                     PropertyChanges { target: row; visible:true}
                     PropertyChanges { target: row2; visible: false}
+                },
+                State {
+                    name: "TRENDING_SELECTED"
+                    PropertyChanges { target: searchHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: alphaHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: trendingHighlighted; color: "lightgrey"}
+                },
+                State {
+                    name: "ALPHA_SELECTED"
+                    PropertyChanges { target: searchHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: alphaHighlighted; color: "lightgrey"}
+                    PropertyChanges { target: trendingHighlighted; color: "#F2F2F2"}
                 }
 
             ]

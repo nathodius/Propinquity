@@ -1,130 +1,115 @@
-import QtQuick 2.0
-import QtQuick.Controls 1.2
-import QtQuick.Layouts 1.1
-import cppClasses 1.0
-import QtQuick.Window 2.0
+import QtQuick 2.1
+import Enginio 1.0
+import QtQuick.Controls 1.0
+import QtQuick.Layouts 1.0
 
-Rectangle {
-    id: rectangle1
-    width: 200
-    height: 350
-
-    Login {
-      id: login
-      // load data from backend
+ColumnLayout {
+    EnginioOAuth2Authentication {
+        id: identity
+        user: login.text
+        password: password.text
     }
+    EnginioClient {
+        id: enginioClient
+        backendId: {"54a9c4b05a3d8b5e1a00c046"} // copy/paste your EDS instance backend id here
+        //onFinished: console.log("Request served." + reply.data)
+        onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
+        onSessionAuthenticated: console.log("Authenticated.", JSON.stringify(reply.data))
+        onSessionAuthenticationError: console.log("Authentication error", JSON.stringify(reply.data))
+        onSessionTerminated: console.log("Termination.", JSON.stringify(reply.data))
+        //identity: oauth2
+        //identity: auth
+        //identity: auth
+        identity: null
+    }
+    anchors.fill: parent
+    anchors.margins: 3
+    spacing: 3
 
-    Flickable {
-        id: scroller
-        width: Screen.width
-        height: Screen.height
-        contentWidth: Screen.width
-        contentHeight: 400
-        maximumFlickVelocity: 1500
-        boundsBehavior: Flickable.DragOverBounds
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        flickableDirection: Flickable.VerticalFlick
-
-    Label {
-        id: title
-        x: 83
-        width: 200
-        height: 35
-        color: "#5fa8d7"
-        text: qsTr("PROPINQUITY")
-        verticalAlignment: Text.AlignVCenter
-        wrapMode: Text.NoWrap
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: 26
-        font.family: "Tahoma"
-        textFormat: Text.PlainText
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: 35
+    TextField {
+        id: login
+        Layout.fillWidth: true
+        placeholderText: "Username"
+        enabled: enginioClient.authenticationState == Enginio.NotAuthenticated
     }
 
     TextField {
-        id: emailField
-        x: 52
-        width: 200
-        height: 40
-        opacity: 0.75
-        font.pixelSize: 16
-        font.family: "Tahoma"
-        anchors.top: title.bottom
-        anchors.topMargin: 50
-        anchors.horizontalCenter: parent.horizontalCenter
-        placeholderText: qsTr("Email")
-    }
-
-    TextField {
-        id: passwordField
-        x: 52
-        width: 200
-        height: 40
-        font.family: "Tahoma"
-        echoMode: 2
-        opacity: 0.75
-        font.pixelSize: 16
-        anchors.top: emailField.bottom
-        anchors.topMargin: 30
-        anchors.horizontalCenter: parent.horizontalCenter
-        placeholderText: qsTr("Password")
+        id: password
+        Layout.fillWidth: true
+        placeholderText: "Password"
+        echoMode: TextInput.PasswordEchoOnEdit
+        enabled: enginioClient.authenticationState == Enginio.NotAuthenticated
     }
 
     Button {
-        id: loginButton
-        x: 62
-        text: qsTr("LOGIN")
-        anchors.horizontalCenter: parent.horizontalCenter
-        scale: 1
-        transformOrigin: Item.Center
-        anchors.top: passwordField.bottom
-        anchors.topMargin: 30
-        onClicked: {
-            content.source = "TabView.qml"
-            login.email = emailField.getText()
-            login.password = passwordField.getText()
+        id: proccessButton
+        Layout.fillWidth: true
+    }
+
+    TextArea {
+        id: data
+        text: "Not logged in.\n\n"
+        readOnly: true
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+
+        Connections {
+            target: enginioClient
+            onSessionAuthenticated: {
+                data.text = data.text + "User '"+ login.text +"' is logged in.\n\n" + JSON.stringify(reply.data, undefined, 2) + "\n\n"
+            }
+            onSessionAuthenticationError: {
+                data.text = data.text + "Authentication of user '"+ login.text +"' failed.\n\n" + JSON.stringify(reply.data, undefined, 2) + "\n\n"
+            }
+            onSessionTerminated: {
+                data.text = data.text + "Session closed.\n\n"
+            }
         }
-        // capture credentials
     }
 
-    /*Label {
-        id: createAcct
-        x: 83
-        text: qsTr("Create an Account")
-        font.underline: true
-        verticalAlignment: Text.AlignVCenter
-        font.pixelSize: 12
-        textFormat: Text.PlainText
-        font.family: "Tahoma"
-        anchors.horizontalCenter: parent.horizontalCenter
-        horizontalAlignment: Text.AlignHCenter
-        anchors.top: loginButton.bottom
-        anchors.topMargin: 30
-    }*/
-
-    /*MouseArea {
-        id: createAcctArea
-        x: 52
-        y: 274
-        width: 97
-        height: 15
-        anchors.horizontalCenter: createAcct.horizontalCenter
-        anchors.verticalCenter: createAcct.verticalCenter
-        onClicked: content.source = "CreateAcctPage.qml"
-    }*/
-
-    /*ColumnLayout {
-        id: columnLayout1
-        x: 50
-        y: 103
-        width: 200
-        height: 350
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-    }*/
-    }
+    states: [
+        State {
+            name: "NotAuthenticated"
+            when: enginioClient.authenticationState == Enginio.NotAuthenticated
+            PropertyChanges {
+                target: proccessButton
+                text: "Login"
+                onClicked: {
+                    enginioClient.identity = identity
+                }
+            }
+        },
+        State {
+            name: "Authenticating"
+            when: enginioClient.authenticationState == Enginio.Authenticating
+            PropertyChanges {
+                target: proccessButton
+                text: "Authenticating..."
+                enabled: false
+            }
+        },
+        State {
+            name: "AuthenticationFailure"
+            when: enginioClient.authenticationState == Enginio.AuthenticationFailure
+            PropertyChanges {
+                target: proccessButton
+                text: "Authentication failed, restart"
+                onClicked: {
+                    enginioClient.identity = null
+                }
+            }
+        },
+        State {
+            name: "Authenticated"
+            when: enginioClient.authenticationState == Enginio.Authenticated
+            PropertyChanges {
+                target: proccessButton
+                text: "Logout"
+                onClicked: {
+                    enginioClient.identity = null
+                }
+            }
+        }
+    ]
 }
 

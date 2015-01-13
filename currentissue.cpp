@@ -3,6 +3,7 @@
 CurrentIssue::CurrentIssue(QObject *parent) : QObject(parent)
 {
     m_feed = 0;
+    m_tracking = false;
 }
 
 CurrentIssue::~CurrentIssue()

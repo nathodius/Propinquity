@@ -11,28 +11,6 @@ Rectangle {
     anchors.fill: parent
     color: "white"
 
-    /*EnginioClient {
-        id: client
-        backendId: {"54a9c4b05a3d8b5e1a00c046"} // copy/paste your EDS instance backend id here
-        onFinished: console.log("Request served." + reply.data)
-        onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
-    }
-
-    EnginioModel {
-        id: enginioModel
-        //backendId: {"54a9c4b05a3d8b5e1a00c046"}
-        client: client
-        query:{
-            "objectType": "objects.localFeed",
-            sort: [{"sortBy": "createdAt", "direction": "desc"}] // DEFAULT TO MOST RECENT
-        }
-    }*/
-
-    /*CurrentIssue {
-        id: currentIssue
-        //backToFeedChanged: content.source = findFeed()
-    }*/
-
     /* News Feed */
 
     Loader {
@@ -56,67 +34,133 @@ Rectangle {
         height: 30
 
         RowLayout {
+            id: iconRow
             //id: row
             //height: 50
             anchors.centerIn: parent
             //Label { text: "Ivalid email or password" } // Initial label
             spacing: Screen.width*0.2
 
-            Image {
-                id: tracking
-                sourceSize.width: 20
-                sourceSize.height: 20
-                source: "qrc:tracking.png"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        feed.source = "TrackingFeed.qml"
-                        currentIssue.feed = 0
+            Rectangle {
+                id: trackingHighlighted
+                width: 25
+                height: 30
+                color: "#F2F2F2"
+
+                Image {
+                    anchors.centerIn: parent
+                    id: tracking
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:tracking.png"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            feed.source = "TrackingFeed.qml"
+                            currentIssue.feed = 0
+                            iconRow.state = "TRACKING_SELECTED"
+                        }
                     }
                 }
             }
 
-            Image {
-                id: local
-                sourceSize.width: 20
-                sourceSize.height: 20
-                source: "qrc:local.png"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        feed.source = "LocalFeed.qml"
-                        currentIssue.feed = 1
+            Rectangle {
+                id: localHighlighted
+                width: 25
+                height: 30
+                color: "#F2F2F2"
+                Image {
+                    id: local
+                    anchors.centerIn: parent
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:local.png"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            feed.source = "LocalFeed.qml"
+                            currentIssue.feed = 1
+                            iconRow.state = "LOCAL_SELECTED"
+                        }
                     }
                 }
             }
 
-            Image {
-                id: state
-                sourceSize.width: 20
-                sourceSize.height: 20
-                source: "qrc:state.png"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        feed.source = "StateFeed.qml"
-                        currentIssue.feed = 2
+            Rectangle {
+                id: stateHighlighted
+                width: 25
+                height: 30
+                color: "#F2F2F2"
+                Image {
+                    id: state
+                    anchors.centerIn: parent
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:state.png"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            feed.source = "StateFeed.qml"
+                            currentIssue.feed = 2
+                            iconRow.state = "STATE_SELECTED"
+                        }
                     }
                 }
             }
 
-            Image {
-                id: federal
-                sourceSize.width: 20
-                sourceSize.height: 20
-                source: "qrc:federal.png"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        feed.source = "FederalFeed.qml"
-                        currentIssue.feed = 3
+            Rectangle {
+                id: federalHighlighted
+                color: "#F2F2F2"
+                width: 25
+                height: 30
+                Image {
+                    id: federal
+                    anchors.centerIn: parent
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:federal.png"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            feed.source = "FederalFeed.qml"
+                            currentIssue.feed = 3
+                            iconRow.state = "FEDERAL_SELECTED"
+                        }
                     }
                 }
             }
+
+            states: [
+                State {
+                    name: "LOCAL_SELECTED"
+                    PropertyChanges { target: trackingHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: localHighlighted; color: "lightgrey"}
+                    PropertyChanges { target: stateHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: federalHighlighted; color: "#F2F2F2"}
+                },
+                State {
+                    name: "TRACKING_SELECTED"
+                    PropertyChanges { target: trackingHighlighted; color: "lightgrey"}
+                    PropertyChanges { target: localHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: stateHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: federalHighlighted; color: "#F2F2F2"}
+                },
+                State {
+                    name: "STATE_SELECTED"
+                    PropertyChanges { target: trackingHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: localHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: stateHighlighted; color: "lightgrey"}
+                    PropertyChanges { target: federalHighlighted; color: "#F2F2F2"}
+                }
+                ,
+                State {
+                    name: "FEDERAL_SELECTED"
+                    PropertyChanges { target: trackingHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: localHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: stateHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: federalHighlighted; color: "lightgrey"}
+                }
+            ]
 
         }
 

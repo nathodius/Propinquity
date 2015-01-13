@@ -41,7 +41,9 @@ Item {
                       id: mouseArea
                       anchors.fill: parent
                       onClicked: {
-                          //checkYea.visible = true
+                          currentIssue.tracking = !currentIssue.tracking
+                          star.source = (currentIssue.tracking === true) ? star.source = "starChecked.png" : star.source = "starUnchecked.png"//"starChecked.png"
+                          // add to Tracking
                       }
                     }
                 }
