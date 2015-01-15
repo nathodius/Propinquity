@@ -11,8 +11,20 @@ User::~User()
 
 }
 
-void User::addToTracking(QString id) {
-    m_tracking.append(id);
+bool User::addToTracking(QString id) {
+    bool temp;
+    if (m_tracking.contains(id))
+    {
+        m_tracking.removeOne(id);
+        temp = true;
+    }
+    else
+       {
+        m_tracking.append(id);
+        temp = false;
+    }
+    //m_tracking = !m_tracking;
     qDebug() << m_tracking;
+    return temp;
 }
 

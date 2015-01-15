@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls.Styles 1.3
 import QtQuick.Dialogs 1.2
 import Enginio 1.0
+import cppClasses 1.0
 
 Item {
     id: delegate
@@ -12,13 +13,39 @@ Item {
     width: delegate.ListView.view.width - 20
     x: 5
 
+    /*EnginioClient {
+        id: client
+        backendId: {"54a9c4b05a3d8b5e1a00c046"} // copy/paste your EDS instance backend id here
+        onFinished: console.log("Request served." + reply.data)
+        onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
+    }
+
+    EnginioModel {
+        id: enginioModel
+        //backendId: {"54a9c4b05a3d8b5e1a00c046"}
+        client: client
+        query:{
+             update: {
+            "objectType": "objects.localFeed",
+            "minutesUntilExp": timeStamp.minutesUntilExp(expirationDate)
+            }
+        }
+    }*/
+
+    TimeStamp {
+        id: timeStamp
+    }
+
+    Component.onCompleted: minutesUntilExp = timeStamp.minutesUntilExp(expirationDate)
+
     Loader {
         id: issueProf
-        //source: "TabView.qml"
         anchors.fill: parent
     }
 
     Row {
+
+        spacing: 15
 
         Column {
 
@@ -29,60 +56,27 @@ Item {
 
             Row {
                 id: row
-                spacing: 25
+                spacing: 20
                 width: parent.width
 
                 Image {
                     id: star
                     sourceSize.width: 20
-                    sourceSize.height: 20
+                    sourceSize.height: 16
                     source: "qrc:starUnchecked.png"
                     MouseArea {
                       id: mouseArea
                       anchors.fill: parent
                       onClicked: {
-                          currentIssue.tracking = !currentIssue.tracking
-                          star.source = (currentIssue.tracking === true) ? star.source = "starChecked.png" : star.source = "starUnchecked.png"//"starChecked.png"
-                          // add to Tracking
+                          star.source = (user.addToTracking(id) === true) ? star.source = "starUnchecked.png": star.source = "starChecked.png"
                       }
                     }
                 }
 
-                /*CheckBox {
-                    style: CheckBoxStyle {
-                        indicator: Rectangle {
-                            implicitWidth: 16
-                            implicitHeight: 16
-                            radius: 3
-                            border.color: control.activeFocus ? "darkblue" : "gray"
-                            border.width: 1
-                            Rectangle {
-                                visible: control.checked
-                                color: "#555"
-                                border.color: "#333"
-                                radius: 1
-                                anchors.margins: 4
-                                anchors.fill: parent
-                            }
-                        }
-                    }
-                    onCheckedChanged: {
-                        //user.tracking = federalTracking.append(id)
-                        var reply = client.update(
-                                    {   //"objectType": "Users",
-                                        "id": "54ab156f5a3d8b5e1a022983", // use user id
-                                        "$push": {
-                                            "localTracking": "yeeee"
-                                        }
-                                    } , Enginio.UserOperation)
-                        user.addToTracking(id)
-                    }
-                }*/
-
                 Text {
                     id: titleText
                     text: issue; wrapMode: Text.WordWrap
-                    font { bold: true; family: "Helvetica"; pointSize: 24 }
+                    font { bold: false; family: "Helvetica"; pixelSize: 20; underline: true }
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
@@ -96,10 +90,24 @@ Item {
 
             }
 
-            Text {
-                id: descriptionText
-                width: parent.width; color: "#837c7c"; text: summary
-                wrapMode: Text.WordWrap; font.family: "Helvetica"
+            Row {
+
+                spacing: 20
+
+                Text {
+                    id: descriptionText
+                    color: "#837c7c"; text: timeStamp.date(expirationDate)
+                    font.family: "Helvetica"
+                    font.pixelSize: 14
+                }
+
+                Text {
+                    id: subjectText
+                    color: "#837c7c"; text: subject;
+                    font {bold: true; pixelSize: 14}
+                    font.family: "Helvetica"
+                }
+
             }
         }
 
@@ -112,12 +120,12 @@ Item {
             spacing: 15
 
             Row {
-                spacing: 10
+                spacing: 20
 
                 Image {
                     id: thumbsUp
-                    sourceSize.width: 25
-                    sourceSize.height: 25
+                    sourceSize.width: 20
+                    sourceSize.height: 16
                     source: "qrc:greenThumbsUp.png"
                     MouseArea {
                       anchors.fill: parent
@@ -129,8 +137,8 @@ Item {
 
                 Image {
                     id: redThumbsDown
-                    sourceSize.width: 25
-                    sourceSize.height: 25
+                    sourceSize.width: 20
+                    sourceSize.height: 16
                     source: "qrc:thumbsDownRed.png"
                     MouseArea {
                       anchors.fill: parent
@@ -145,8 +153,9 @@ Item {
             Text {
                 id: voteCount
                 //anchors.left: titleText.right
-                text: "(" + votes + " votes" + ")"; width: parent.width; wrapMode: Text.WordWrap
-                font { bold: false; family: "Helvetica"; pointSize: 16 }
+                text: "(" + votes + " votes" + ")"; width: parent.width;
+                //color:
+                font { bold: false; family: "Helvetica"; pixelSize: 14 }
             }
 
         }
@@ -172,6 +181,7 @@ Item {
                         text: "Cast vote."
                         onClicked: {
                             votes++
+                            //minutesUntilExp = 1
                             yeas++
                             checkYea.visible = false
                             delegate.visible = false

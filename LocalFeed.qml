@@ -4,6 +4,7 @@ import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.0
 import QtQuick.Layouts 1.1
+import cppClasses 1.0
 
 Rectangle {
     id: container
@@ -22,8 +23,8 @@ Rectangle {
         //backendId: {"54a9c4b05a3d8b5e1a00c046"}
         client: client
         query:{
-            "objectType": "objects.localFeed",
-                    sort: [{"sortBy": "createdAt", "direction": "desc"}] // DEFAULT TO MOST RECENT
+            "objectType": "objects.localFeed",        
+            sort: [{"sortBy": "createdAt", "direction": "desc"}] // DEFAULT TO MOST RECENT
         }
     }
 
@@ -60,11 +61,13 @@ Rectangle {
             id: row2
             anchors.centerIn: parent
             visible: false
+            spacing: 25
             PropertyChanges { target: row; visible: false}
             Image {
                 id: cancel
                 sourceSize.width: 20
                 sourceSize.height: 20
+                //anchors.right: searchBar
                 source: "qrc:x.png"
                 MouseArea {
                     anchors.fill: parent
@@ -82,7 +85,8 @@ Rectangle {
             TextField {
                 //visible: false
                 id: searchBar
-                placeholderText: qsTr("search")
+                placeholderText: qsTr("Search")
+                width: Screen.width * 0.5
                 //anchors
                 onAccepted: {
                     /*row.state = "NORMAL"
@@ -117,17 +121,17 @@ Rectangle {
                     anchors.centerIn: parent
                     sourceSize.width: 20
                     sourceSize.height: 20
-                    source: "qrc:trending.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            enginioModel.query = {
-                                "objectType": "objects.localFeed",
-                                //limit: 5,
-                                sort: [{"sortBy": "votes", "direction": "desc"}],
-                            }
-                            row.state = "TRENDING_SELECTED"
+                    source: "qrc:trending.png"       
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        enginioModel.query = {
+                            "objectType": "objects.localFeed",
+                            //limit: 5,
+                            sort: [{"sortBy": "votes", "direction": "desc"}],
                         }
+                        row.state = "TRENDING_SELECTED"
                     }
                 }
             }
@@ -143,16 +147,16 @@ Rectangle {
                     sourceSize.width: 20
                     sourceSize.height: 20
                     source: "qrc:alphabeticalSort.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            enginioModel.query = {
-                                "objectType": "objects.localFeed",
-                                //limit: 5,
-                                sort: [{"sortBy": "issue", "direction": "asc"}],
-                            }
-                            row.state = "ALPHA_SELECTED"
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        enginioModel.query = {
+                            "objectType": "objects.localFeed",
+                            //limit: 5,
+                            sort: [{"sortBy": "issue", "direction": "asc"}],
                         }
+                        row.state = "ALPHA_SELECTED"
                     }
                 }
             }
@@ -168,11 +172,11 @@ Rectangle {
                     sourceSize.width: 20
                     sourceSize.height: 20
                     source: "qrc:search.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            row.state = "SEARCH"
-                        }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        row.state = "SEARCH"
                     }
                 }
             }

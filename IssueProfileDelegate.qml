@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls.Styles 1.3
 import QtQuick.Dialogs 1.2
 import Enginio 1.0
+import cppClasses 1.0
 
 Item {
     id: delegate
@@ -13,8 +14,13 @@ Item {
     x: 5
     //anchors.fill: Screen
 
+    TimeStamp {
+        id: timeStamp
+    }
+
     Row {
-        //anchors.l
+
+        spacing: 15
 
         Column {
 
@@ -25,41 +31,58 @@ Item {
 
             Row {
                 id: row
-                spacing: 25
+                spacing: 20
                 width: parent.width
-                //height: (2/3)*parent.
 
                 Image {
                     id: star
                     sourceSize.width: 20
-                    sourceSize.height: 20
+                    sourceSize.height: 16
                     source: "qrc:starUnchecked.png"
                     MouseArea {
                       id: mouseArea
                       anchors.fill: parent
                       onClicked: {
-                          //checkYea.visible = true
+                          star.source = (user.addToTracking(id) === true) ? star.source = "starUnchecked.png": star.source = "starChecked.png"
                       }
                     }
                 }
 
                 Text {
                     id: titleText
-                    text: issue; width: (parent.width - 200); wrapMode: Text.WordWrap
-                    font { bold: true; family: "Helvetica"; pointSize: 24 }
+                    text: issue; wrapMode: Text.WordWrap
+                    font { bold: false; family: "Helvetica"; pixelSize: 20; underline: true }
                     MouseArea {
-                        width: parent.width
-                        height: parent.height
-                        onClicked: content.source = "IssueProfile.qml"
+                        anchors.fill: parent
+                        onClicked: {
+                            currentIssue.id = id
+                            //currentIssue.feed =
+                            content.source = "IssueProfile.qml"
+                            //currentIssue.backToFeed = false
+                        }
                     }
                 }
 
             }
 
-            Text {
-                id: descriptionText
-                width: parent.width; color: "#837c7c"; text: summary
-                wrapMode: Text.WordWrap; font.family: "Helvetica"
+            Row {
+
+                spacing: 20
+
+                Text {
+                    id: descriptionText
+                    color: "#837c7c"; text: timeStamp.date(expirationDate)
+                    font.family: "Helvetica"
+                    font.pixelSize: 14
+                }
+
+                Text {
+                    id: subjectText
+                    color: "#837c7c"; text: subject;
+                    font {bold: true; pixelSize: 14}
+                    font.family: "Helvetica"
+                }
+
             }
         }
 
@@ -72,11 +95,12 @@ Item {
             spacing: 15
 
             Row {
-                spacing: 10
+                spacing: 20
+
                 Image {
                     id: thumbsUp
-                    sourceSize.width: 25
-                    sourceSize.height: 25
+                    sourceSize.width: 20
+                    sourceSize.height: 16
                     source: "qrc:greenThumbsUp.png"
                     MouseArea {
                       anchors.fill: parent
@@ -88,8 +112,8 @@ Item {
 
                 Image {
                     id: redThumbsDown
-                    sourceSize.width: 25
-                    sourceSize.height: 25
+                    sourceSize.width: 20
+                    sourceSize.height: 16
                     source: "qrc:thumbsDownRed.png"
                     MouseArea {
                       anchors.fill: parent
@@ -104,8 +128,9 @@ Item {
             Text {
                 id: voteCount
                 //anchors.left: titleText.right
-                text: "(" + votes + " votes" + ")"; width: parent.width; wrapMode: Text.WordWrap
-                font { bold: false; family: "Helvetica"; pointSize: 16 }
+                text: "(" + votes + " votes" + ")"; width: parent.width;
+                //color:
+                font { bold: false; family: "Helvetica"; pixelSize: 14 }
             }
 
         }

@@ -15,11 +15,11 @@ class User : public QObject
     Q_PROPERTY(QString age MEMBER m_age)
     Q_PROPERTY(QString ethnicity MEMBER m_ethnicity)
     Q_PROPERTY(QString income MEMBER m_income)
-    Q_PROPERTY(QStringList tracking MEMBER m_tracking)
+    Q_PROPERTY(QStringList tracking MEMBER m_tracking NOTIFY trackingUpdated)
 public:
     explicit User(QObject *parent = 0);
     ~User();
-    Q_INVOKABLE void addToTracking(QString id);
+    Q_INVOKABLE bool addToTracking(QString id);
 
 private:
     QString m_email;
@@ -34,6 +34,7 @@ private:
 
 
 signals:
+    void trackingUpdated();
 
 public slots:
 };

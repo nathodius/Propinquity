@@ -5,7 +5,8 @@ QT += qml quick widgets enginio
 SOURCES += main.cpp \
     user.cpp \
     login.cpp \
-    currentissue.cpp
+    currentissue.cpp \
+    timestamp.cpp
 
 RESOURCES += qml.qrc
 
@@ -18,4 +19,5 @@ include(deployment.pri)
 HEADERS += \
     user.h \
     login.h \
-    currentissue.h
+    currentissue.h \
+    timestamp.h

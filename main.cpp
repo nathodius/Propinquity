@@ -4,6 +4,7 @@
 #include "user.h"
 #include "login.h"
 #include "currentissue.h"
+#include "timestamp.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +13,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<User>("cppClasses", 1, 0, "User");
     qmlRegisterType<Login>("cppClasses", 1, 0, "Login");
     qmlRegisterType<CurrentIssue>("cppClasses", 1, 0, "CurrentIssue");
+    qmlRegisterType<TimeStamp>("cppClasses", 1, 0, "TimeStamp");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

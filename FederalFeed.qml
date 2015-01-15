@@ -82,7 +82,7 @@ Rectangle {
             TextField {
                 //visible: false
                 id: searchBar
-                placeholderText: qsTr("search")
+                placeholderText: qsTr("Search")
                 //anchors
                 onAccepted: {
                     /*row.state = "NORMAL"
@@ -118,16 +118,16 @@ Rectangle {
                     sourceSize.width: 20
                     sourceSize.height: 20
                     source: "qrc:trending.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            enginioModel.query = {
-                                "objectType": "objects.federalFeed",
-                                //limit: 5,
-                                sort: [{"sortBy": "votes", "direction": "desc"}],
-                            }
-                            row.state = "TRENDING_SELECTED"
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        enginioModel.query = {
+                            "objectType": "objects.federalFeed",
+                            //limit: 5,
+                            sort: [{"sortBy": "votes", "direction": "desc"}],
                         }
+                        row.state = "TRENDING_SELECTED"
                     }
                 }
             }
@@ -143,16 +143,16 @@ Rectangle {
                     sourceSize.width: 20
                     sourceSize.height: 20
                     source: "qrc:alphabeticalSort.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            enginioModel.query = {
-                                "objectType": "objects.federalFeed",
-                                //limit: 5,
-                                sort: [{"sortBy": "issue", "direction": "asc"}],
-                            }
-                            row.state = "ALPHA_SELECTED"
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        enginioModel.query = {
+                            "objectType": "objects.federalFeed",
+                            //limit: 5,
+                            sort: [{"sortBy": "issue", "direction": "asc"}],
                         }
+                        row.state = "ALPHA_SELECTED"
                     }
                 }
             }
@@ -168,11 +168,11 @@ Rectangle {
                     sourceSize.width: 20
                     sourceSize.height: 20
                     source: "qrc:search.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            row.state = "SEARCH"
-                        }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        row.state = "SEARCH"
                     }
                 }
             }

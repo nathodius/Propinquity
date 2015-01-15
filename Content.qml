@@ -53,13 +53,13 @@ Rectangle {
                     sourceSize.width: 20
                     sourceSize.height: 20
                     source: "qrc:tracking.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            feed.source = "TrackingFeed.qml"
-                            currentIssue.feed = 0
-                            iconRow.state = "TRACKING_SELECTED"
-                        }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        feed.source = "TrackingFeed.qml"
+                        currentIssue.feed = 0
+                        iconRow.state = "TRACKING_SELECTED"
                     }
                 }
             }
@@ -75,13 +75,13 @@ Rectangle {
                     sourceSize.width: 20
                     sourceSize.height: 20
                     source: "qrc:local.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            feed.source = "LocalFeed.qml"
-                            currentIssue.feed = 1
-                            iconRow.state = "LOCAL_SELECTED"
-                        }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        feed.source = "LocalFeed.qml"
+                        currentIssue.feed = 1
+                        iconRow.state = "LOCAL_SELECTED"
                     }
                 }
             }
@@ -97,13 +97,13 @@ Rectangle {
                     sourceSize.width: 20
                     sourceSize.height: 20
                     source: "qrc:state.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            feed.source = "StateFeed.qml"
-                            currentIssue.feed = 2
-                            iconRow.state = "STATE_SELECTED"
-                        }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        feed.source = "StateFeed.qml"
+                        currentIssue.feed = 2
+                        iconRow.state = "STATE_SELECTED"
                     }
                 }
             }
@@ -118,14 +118,14 @@ Rectangle {
                     anchors.centerIn: parent
                     sourceSize.width: 20
                     sourceSize.height: 20
-                    source: "qrc:federal.png"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            feed.source = "FederalFeed.qml"
-                            currentIssue.feed = 3
-                            iconRow.state = "FEDERAL_SELECTED"
-                        }
+                    source: "qrc:federal.png" 
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        feed.source = "FederalFeed.qml"
+                        currentIssue.feed = 3
+                        iconRow.state = "FEDERAL_SELECTED"
                     }
                 }
             }
