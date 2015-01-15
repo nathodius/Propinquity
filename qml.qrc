@@ -27,5 +27,6 @@
         <file>state.png</file>
         <file>Content.qml</file>
         <file>x.png</file>
+        <file>expiring.png</file>
     </qresource>
 </RCC>

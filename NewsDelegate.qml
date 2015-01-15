@@ -13,25 +13,6 @@ Item {
     width: delegate.ListView.view.width - 20
     x: 5
 
-    /*EnginioClient {
-        id: client
-        backendId: {"54a9c4b05a3d8b5e1a00c046"} // copy/paste your EDS instance backend id here
-        onFinished: console.log("Request served." + reply.data)
-        onError: console.log("Ooops! Something went wrong!", JSON.stringify(reply.data))
-    }
-
-    EnginioModel {
-        id: enginioModel
-        //backendId: {"54a9c4b05a3d8b5e1a00c046"}
-        client: client
-        query:{
-             update: {
-            "objectType": "objects.localFeed",
-            "minutesUntilExp": timeStamp.minutesUntilExp(expirationDate)
-            }
-        }
-    }*/
-
     TimeStamp {
         id: timeStamp
     }

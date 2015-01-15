@@ -105,7 +105,7 @@ Rectangle {
             //height: 50
             anchors.centerIn: parent
             //Label { text: "Ivalid email or password" } // Initial label
-            spacing: Screen.width*0.3
+            spacing: Screen.width*0.2
 
             Rectangle {
                 id: trendingHighlighted
@@ -128,6 +128,31 @@ Rectangle {
                             sort: [{"sortBy": "votes", "direction": "desc"}],
                         }
                         row.state = "TRENDING_SELECTED"
+                    }
+                }
+            }
+
+            Rectangle {
+                id: expiringHighlighted
+                color: "#F2F2F2"
+                width: 25
+                height: 30
+                Image {
+                    id: expiring
+                    anchors.centerIn: parent
+                    sourceSize.width: 20
+                    sourceSize.height: 20
+                    source: "qrc:expiring.png"
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        enginioModel.query = {
+                            "objectType": "objects.stateFeed",
+                            //limit: 5,
+                            sort: [{"sortBy": "minutesUntilExp", "direction": "asc"}],
+                        }
+                        row.state = "EXPIRING_SELECTED"
                     }
                 }
             }
@@ -194,12 +219,21 @@ Rectangle {
                     PropertyChanges { target: searchHighlighted; color: "#F2F2F2"}
                     PropertyChanges { target: alphaHighlighted; color: "#F2F2F2"}
                     PropertyChanges { target: trendingHighlighted; color: "lightgrey"}
+                    PropertyChanges { target: expiringHighlighted; color: "#F2F2F2"}
                 },
                 State {
                     name: "ALPHA_SELECTED"
                     PropertyChanges { target: searchHighlighted; color: "#F2F2F2"}
                     PropertyChanges { target: alphaHighlighted; color: "lightgrey"}
                     PropertyChanges { target: trendingHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: expiringHighlighted; color: "#F2F2F2"}
+                },
+                State {
+                    name: "EXPIRING_SELECTED"
+                    PropertyChanges { target: searchHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: alphaHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: trendingHighlighted; color: "#F2F2F2"}
+                    PropertyChanges { target: expiringHighlighted; color: "lightgrey"}
                 }
 
             ]
