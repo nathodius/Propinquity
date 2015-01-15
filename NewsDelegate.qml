@@ -37,27 +37,34 @@ Item {
 
             Row {
                 id: row
-                spacing: 20
+                spacing: 30
                 width: parent.width
 
-                Image {
-                    id: star
-                    sourceSize.width: 20
-                    sourceSize.height: 16
-                    source: "qrc:starUnchecked.png"
+                Rectangle {
+                    height: parent.height
+                    width: 50
+                    Image {
+                        id: star
+                        sourceSize.width: 24
+                        sourceSize.height: 16
+                        anchors.centerIn: parent
+                        source: "qrc:starUnchecked.png"
+                    }
                     MouseArea {
-                      id: mouseArea
-                      anchors.fill: parent
-                      onClicked: {
-                          star.source = (user.addToTracking(id) === true) ? star.source = "starUnchecked.png": star.source = "starChecked.png"
-                      }
+                        id: mouseArea
+                        anchors.fill: parent
+                        onClicked: {
+                            star.source = (user.addToTracking(id) === true) ? star.source = "starUnchecked.png": star.source = "starChecked.png"
+                        }
                     }
                 }
 
                 Text {
                     id: titleText
                     text: issue; wrapMode: Text.WordWrap
-                    font { bold: false; family: "Helvetica"; pixelSize: 20; underline: true }
+                    //lineHeight: 16
+                    //lineHeightMode: Text.FixedHeight
+                    font { bold: true; family: "Helvetica"; pixelSize: 18; underline: false }
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
@@ -73,7 +80,7 @@ Item {
 
             Row {
 
-                spacing: 20
+                spacing: 25
 
                 Text {
                     id: descriptionText
@@ -85,7 +92,7 @@ Item {
                 Text {
                     id: subjectText
                     color: "#837c7c"; text: subject;
-                    font {bold: true; pixelSize: 14}
+                    font {bold: false; pixelSize: 14}
                     font.family: "Helvetica"
                 }
 
@@ -109,10 +116,10 @@ Item {
                     sourceSize.height: 16
                     source: "qrc:greenThumbsUp.png"
                     MouseArea {
-                      anchors.fill: parent
-                      onClicked: {
-                          checkYea.visible = true
-                      }
+                        anchors.fill: parent
+                        onClicked: {
+                            checkYea.visible = true
+                        }
                     }
                 }
 
@@ -122,10 +129,10 @@ Item {
                     sourceSize.height: 16
                     source: "qrc:thumbsDownRed.png"
                     MouseArea {
-                      anchors.fill: parent
-                      onClicked: {
-                          checkNay.visible = true
-                      }
+                        anchors.fill: parent
+                        onClicked: {
+                            checkNay.visible = true
+                        }
                     }
                 }
 
@@ -152,31 +159,31 @@ Item {
         visible: false
         color: "green"
 
-            Column {
-                spacing: 10
-                anchors.centerIn: parent
-                Row {
-                    spacing: 25
-                    Button {
-                        id: voteButton
-                        text: "Cast vote."
-                        onClicked: {
-                            votes++
-                            //minutesUntilExp = 1
-                            yeas++
-                            checkYea.visible = false
-                            delegate.visible = false
-                            delegate.height = 0
-                        }
+        Column {
+            spacing: 10
+            anchors.centerIn: parent
+            Row {
+                spacing: 25
+                Button {
+                    id: voteButton
+                    text: "Cast vote"
+                    onClicked: {
+                        votes++
+                        //minutesUntilExp = 1
+                        yeas++
+                        checkYea.visible = false
+                        delegate.visible = false
+                        delegate.height = 0
                     }
-                    Button {
-                        id: canelButton
-                        text: "Cancel vote"
-                        onClicked: checkYea.visible = false
-                    }
+                }
+                Button {
+                    id: canelButton
+                    text: "Cancel vote"
+                    onClicked: checkYea.visible = false
                 }
             }
         }
+    }
 
 
     Rectangle {
@@ -195,7 +202,7 @@ Item {
             Row {
                 spacing: 25
                 Button {
-                    text: "Cast vote."
+                    text: "Cast vote"
                     onClicked: {
                         votes++
                         yeas++

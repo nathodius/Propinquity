@@ -84,18 +84,24 @@ Rectangle {
                 id: searchBar
                 placeholderText: qsTr("Search")
                 //anchors
-                onAccepted: {
-                    /*row.state = "NORMAL"
-                    var reply = client.fullTextSearch( {
-                        "objectType": "objects.localFeed",
-                        "issue": "issue6"
+                onAccepted: {                  
+                    /*var reply = client.fullTextSearch( {
+                        //"objectType": "objects.federalFeed",
+                        "phrase": searchBar.text
                     })*/
                     enginioModel.query = {
+                        "objectType": "objects.federalFeed",
+                        fullTextSearch: {
+                                                //"objectType": "objects.federalFeed",
+                                                "phrase": searchBar.text
+                                            }
+                    }
+                    /*enginioModel.query = {
                         "objectType": "objects.federalFeed",
                         query: {
                             "issue": searchBar.text
                         }
-                    }
+                    }*/
                 }
             }
         }

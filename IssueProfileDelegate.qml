@@ -31,27 +31,34 @@ Item {
 
             Row {
                 id: row
-                spacing: 20
+                spacing: 30
                 width: parent.width
 
-                Image {
-                    id: star
-                    sourceSize.width: 20
-                    sourceSize.height: 16
-                    source: "qrc:starUnchecked.png"
+                Rectangle {
+                    height: parent.height
+                    width: 50
+                    Image {
+                        id: star
+                        sourceSize.width: 24
+                        sourceSize.height: 16
+                        anchors.centerIn: parent
+                        source: "qrc:starUnchecked.png"
+                    }
                     MouseArea {
-                      id: mouseArea
-                      anchors.fill: parent
-                      onClicked: {
-                          star.source = (user.addToTracking(id) === true) ? star.source = "starUnchecked.png": star.source = "starChecked.png"
-                      }
+                        id: mouseArea
+                        anchors.fill: parent
+                        onClicked: {
+                            star.source = (user.addToTracking(id) === true) ? star.source = "starUnchecked.png": star.source = "starChecked.png"
+                        }
                     }
                 }
 
                 Text {
                     id: titleText
                     text: issue; wrapMode: Text.WordWrap
-                    font { bold: false; family: "Helvetica"; pixelSize: 20; underline: true }
+                    //lineHeight: 16
+                    //lineHeightMode: Text.FixedHeight
+                    font { bold: true; family: "Helvetica"; pixelSize: 18; underline: false }
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
@@ -67,7 +74,7 @@ Item {
 
             Row {
 
-                spacing: 20
+                spacing: 25
 
                 Text {
                     id: descriptionText
@@ -79,7 +86,7 @@ Item {
                 Text {
                     id: subjectText
                     color: "#837c7c"; text: subject;
-                    font {bold: true; pixelSize: 14}
+                    font {bold: false; pixelSize: 14}
                     font.family: "Helvetica"
                 }
 
@@ -103,10 +110,10 @@ Item {
                     sourceSize.height: 16
                     source: "qrc:greenThumbsUp.png"
                     MouseArea {
-                      anchors.fill: parent
-                      onClicked: {
-                          checkYea.visible = true
-                      }
+                        anchors.fill: parent
+                        onClicked: {
+                            checkYea.visible = true
+                        }
                     }
                 }
 
@@ -116,10 +123,10 @@ Item {
                     sourceSize.height: 16
                     source: "qrc:thumbsDownRed.png"
                     MouseArea {
-                      anchors.fill: parent
-                      onClicked: {
-                          checkNay.visible = true
-                      }
+                        anchors.fill: parent
+                        onClicked: {
+                            checkNay.visible = true
+                        }
                     }
                 }
 
@@ -144,7 +151,7 @@ Item {
         width: parent.width
         height: parent.height - 8
         visible: false
-        color: "lightgreen"
+        color: "green"
 
         Column {
             spacing: 10
@@ -193,7 +200,7 @@ Item {
 
     Rectangle {
         id: checkNay
-        color: "#FE2E64"
+        color: "red"//#FE2E64"
         anchors.top: parent.top
         anchors.topMargin: 4
         width: parent.width
@@ -218,7 +225,7 @@ Item {
             Row {
                 spacing: 25
                 Button {
-                    text: "Cast vote."
+                    text: "Cast vote"
                     onClicked: {
                         votes++
                         yeas++
